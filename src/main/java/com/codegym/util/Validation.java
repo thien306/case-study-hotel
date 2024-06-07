@@ -16,7 +16,7 @@ public class Validation {
 
         if (room.getDescription() == null || room.getDescription().isEmpty()) {
             errors.rejectValue("description", "description.empty", "Description cannot be empty");
-        } else if (room.getDescription().length() < 10) {
+        } else if (room.getDescription().length() < 5) {
             errors.rejectValue("description", "description.length", "Description must be at least 10 characters");
         }
 

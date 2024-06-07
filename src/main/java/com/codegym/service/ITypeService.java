@@ -8,7 +8,7 @@ public interface ITypeService {
 
     Iterable<Type> findAll();
 
-    void save(Type type);
+    Type save(Type type);
 
     Optional<Type> findById(Long id);
 
