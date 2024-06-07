@@ -1,6 +1,5 @@
 package com.codegym.service.impl;
 
-import com.codegym.model.Room;
 import com.codegym.model.Type;
 import com.codegym.repository.ITypeRepository;
 import com.codegym.service.ITypeService;
@@ -14,7 +13,6 @@ public class TypeService implements ITypeService {
 
     @Autowired
     private ITypeRepository typeRepository;
-
 
     @Override
     public Iterable<Type> findAll() {
