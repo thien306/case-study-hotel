@@ -3,7 +3,7 @@ package com.codegym.service.impl;
 import com.codegym.model.dto.UserDto;
 import com.codegym.model.User;
 import com.codegym.repository.IUserRepository;
-import com.codegym.service.UserService;
+import com.codegym.service.IUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.stream.StreamSupport;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements IUserService {
     private final IUserRepository userRepository;
     private final ModelMapper modelMapper;
 
@@ -60,7 +60,6 @@ public class UserServiceImpl implements UserService {
                 .map(user -> modelMapper.map(user, UserDto.class))
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public UserDto getUserById(Long userId) {

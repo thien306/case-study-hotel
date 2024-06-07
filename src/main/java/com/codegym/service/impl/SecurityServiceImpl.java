@@ -1,6 +1,6 @@
 package com.codegym.service.impl;
 
-import com.codegym.service.SecurityService;
+import com.codegym.service.ISecurityService;
 import com.codegym.security.JwtTokenProvider;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 @Service
-public class SecurityServiceImpl implements SecurityService {
+public class SecurityServiceImpl implements ISecurityService {
 
     private final JwtTokenProvider jwtTokenProvider;
 
