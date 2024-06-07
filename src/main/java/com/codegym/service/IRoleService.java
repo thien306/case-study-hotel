@@ -5,7 +5,7 @@ import com.codegym.model.dto.RoleDto;
 
 import java.util.Optional;
 
-public interface RoleService {
+public interface IRoleService {
     Iterable<RoleDto> findAll();
     Optional<RoleDto> findById(Long id);
     void save(RoleDto roleDto);
