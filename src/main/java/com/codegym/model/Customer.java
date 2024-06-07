@@ -27,7 +27,23 @@ public class Customer {
     private String email;
 
     @Column(nullable = false)
+    private String password;
+
+    @Column(nullable = false)
     private int phoneNumber;
 
     private String avatar;
+
+    @ManyToOne
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    @PrePersist
+    protected void prePersist() {
+        if (role == null) {
+            role = new Role();
+            role.setId(3L);
+            role.setName("ROLE_CUSTOMER");
+        }
+    }
 }
