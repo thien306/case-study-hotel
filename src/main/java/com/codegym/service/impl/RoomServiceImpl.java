@@ -36,7 +36,7 @@ public class RoomServiceImpl implements IRoomService {
 
     @Override
     public Page<Room> findAllByStatusContaining(Boolean status, Pageable pageable) {
-        return roomRepository.findAllByStatusContaining(status, pageable);
+        return null;
     }
 
     @Override

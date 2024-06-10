@@ -1,8 +1,11 @@
 package com.codegym.controller;
 
+import com.codegym.model.Booking;
 import com.codegym.model.Room;
+import com.codegym.model.RoomBooked;
 import com.codegym.service.Interface.IRoomService;
 import com.codegym.service.Interface.ITypeService;
+import com.codegym.service.RoomBookedServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -20,6 +24,8 @@ import java.util.Optional;
 @CrossOrigin("*")
 @RequestMapping("/api/rooms")
 public class RoomController {
+    @Autowired
+    private RoomBookedServiceImpl roomBookedService;
 
     @Autowired
     private IRoomService roomService;
@@ -102,4 +108,14 @@ public class RoomController {
         }
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
+    @GetMapping(value = "/avaiable")
+    public ResponseEntity <?> getRooms(@ModelAttribute Booking booking) {
+        try {
+            List<Room> roomList = roomBookedService.displayListRoom(booking);
+            return new ResponseEntity<>(roomList,HttpStatus.OK);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+
 }
