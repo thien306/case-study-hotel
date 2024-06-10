@@ -10,6 +10,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,14 +33,15 @@ public class Customer {
     @Temporal(TemporalType.DATE)
     private Date birthday;
 
+
+    @Column(nullable = false, unique = true)
+    private String username;
+
     @Column(nullable = false, unique = true)
     private String email;
 
     @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private int phoneNumber;
+    private String phoneNumber;
 
     private String avatar;
 

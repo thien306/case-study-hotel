@@ -1,0 +1,33 @@
+#pass-meter {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: margin-top 0.8s ease;
+    margin-top: -0.9rem;
+}
+
+#meter-outer {
+    width: 100%;
+    border-radius: 10px;
+    background-color: #eeeeee;
+    height: 0px;
+    transition: height 0.3s ease,
+    transform 0.3s ease;
+}
+
+#meter-inner {
+    display: flex;
+    border-radius: 10px;
+    height: 100%;
+    width: 0%;
+    transition: 0.8s
+    cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+#pwd-desc {
+    text-align: center;
+    color: #6a6a6f;
+    cursor: help;
+    font-size: 0;
+    transition: font-size 0.3s ease;
+}

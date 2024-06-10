@@ -1,7 +1,7 @@
 package com.codegym.service.impl;
 
+import com.codegym.service.Interface.ISecurityService;
 import com.codegym.security.JwtTokenProvider;
-import com.codegym.service.ISecurityService;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

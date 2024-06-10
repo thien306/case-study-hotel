@@ -3,7 +3,7 @@ package com.codegym.service.impl;
 import com.codegym.model.Role;
 import com.codegym.model.dto.RoleDto;
 import com.codegym.repository.IRoleRepository;
-import com.codegym.service.IRoleService;
+import com.codegym.service.Interface.IRoleService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;

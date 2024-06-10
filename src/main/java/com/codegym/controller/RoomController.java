@@ -1,15 +1,17 @@
 package com.codegym.controller;
 
 import com.codegym.model.Room;
+import com.codegym.model.dto.ResponsePage;
+import com.codegym.model.dto.RoomRequestDto;
 import com.codegym.service.IRoomService;
-import com.codegym.service.ITypeService;
+import com.codegym.service.Interface.ITypeService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -69,10 +70,9 @@ public class RoomController {
 
 
     @PostMapping
-    public ResponseEntity<Room> createRoom(@RequestBody Room room, RedirectAttributes redirectAttributes) {
-        Room savedRoom = roomService.save(room);
-        redirectAttributes.addFlashAttribute("message", "New room created successfully");
-        return new ResponseEntity<>(savedRoom, HttpStatus.CREATED);
+    public ResponseEntity<ResponsePage> createRoom(@RequestBody RoomRequestDto roomRequestDto) {
+        ResponsePage responsePage= roomService.save(roomRequestDto);
+        return new ResponseEntity<>(responsePage, responsePage.getStatus());
     }
 
     @DeleteMapping("/{id}")
@@ -94,10 +94,10 @@ public class RoomController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         room.setId(id);
-        Room updatedRoom = roomService.save(room);
+//        Room updatedRoom = roomService.save(room);
         attributes.addFlashAttribute("message", "Room updated successfully");
 
-        return new ResponseEntity<>(updatedRoom, HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
     @PostMapping("/search")
