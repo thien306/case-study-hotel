@@ -286,6 +286,7 @@ body.collapsed .expand-btn img {
 
 .tooltip {
   position: relative;
+  opacity: initial;
 }
 
 .tooltip .tooltip__content {
@@ -312,7 +313,7 @@ body.collapsed .expand-btn img {
   justify-content: center;
   align-items: center;
   padding: 10px;
-  background-color: #f8f9fa;
+  background-color: #f8f9fa; /* Optional background color */
 }
 .search-container form {
   display: flex;
@@ -325,4 +326,247 @@ body.collapsed .expand-btn img {
 }
 .search-container button {
   padding: 5px 10px;
+}
+
+
+/* CSS cho phần .content */
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  flex: 1;
+  padding: 20px;
+}
+/* CSS cho bảng */
+table {
+  width: 900px;
+  border-collapse: collapse;
+  margin-top: 20px; /* Điều chỉnh lại margin-top cho phù hợp */
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 8px;
+  text-align: left;
+}
+
+th {
+  background-color: green;
+  color: white;
+}
+
+td .btn {
+  margin: 0 5px;
+  padding: 5px 10px;
+  background-color: blue;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+td .btn:hover {
+  background-color: darkblue;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:nth-child(odd) {
+  background-color: #ffffff;
+}
+
+td {
+  word-wrap: break-word;
+}
+
+/* CSS cho phần header */
+.header {
+  background-color: #f4f4f4;
+  padding: 20px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* CSS cho search-container trong phần header */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CSS cho phần tìm kiếm trong header */
+.search-container .form-control {
+  width: 300px;
+  margin-right: 10px;
+}
+
+/* CSS cho nút tìm kiếm trong header */
+.search-container .btn {
+  padding: 5px 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-container .btn:hover {
+  background-color: #218838;
+}
+
+/* CSS cho phần grid__column-10 */
+.grid__colum-10 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* CSS cho phần home-filter */
+.home-filter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* CSS cho nhãn home-filter */
+.home-filter_label {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+/* CSS cho nút ADD NEW ROOM */
+.home-filter .btn {
+  margin-left: 10px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.home-filter .btn:hover {
+  background-color: #0056b3;
+}
+
+/* CSS cho phần phân trang */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination .page-item {
+  margin: 0 5px;
+}
+
+.pagination .page-link {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.pagination .page-link:hover {
+  background-color: #f2f2f2;
+}
+
+.pagination .page-item.active .page-link {
+  background-color: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+
+/* Button styling */
+.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+/* Modal styling */
+.modal-content {
+  border-radius: 5px;
+  padding: 20px;
+}
+
+.modal-header {
+  border-bottom: 1px solid #dee2e6;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.close {
+  font-size: 1.5rem;
+  color: #000;
+}
+
+.close:hover {
+  color: #000;
+  opacity: 0.75;
+}
+
+/* Form elements styling */
+.modal-body {
+  margin-top: 10px;
+}
+
+input[type="text"],
+input[type="file"],
+select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+input[type="button"] {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type="button"]:hover {
+  background-color: #0056b3;
+}
+
+label {
+  display: inline-block;
+  margin-bottom: 5px;
+}
+
+/* Modal footer */
+.modal-footer {
+  border-top: 1px solid #dee2e6;
+  padding-top: 10px;
 }

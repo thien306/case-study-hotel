@@ -1,13 +1,12 @@
 package com.codegym.service;
 
 
-import com.codegym.model.Customer;
 import com.codegym.model.Room;
-import com.codegym.model.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Optional;
 
 
@@ -32,5 +31,6 @@ public interface IRoomService {
     void remove(Long id);
 
     Iterable<Room> findByCodeContaining(String code);
+
 
 }

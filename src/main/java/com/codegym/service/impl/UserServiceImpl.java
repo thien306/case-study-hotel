@@ -1,13 +1,14 @@
 package com.codegym.service.impl;
 
-import com.codegym.model.dto.UserDto;
 import com.codegym.model.User;
+import com.codegym.model.dto.UserDto;
 import com.codegym.repository.IUserRepository;
 import com.codegym.service.IUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

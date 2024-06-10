@@ -3,191 +3,295 @@
 <head>
     <meta charset="utf-8">
     <title>Sidebar</title>
-
-
-
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div class="search-container">
-    <form class="d-flex">
-        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success" type="submit">Search</button>
-    </form>
-</div>
+<div class="app">
+    <header class="header">
+        <div class="search-container">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+    <div class="d-flex justify-content-between">
+        <nav>
+            <div class="sidebar-top">
 
-
-
-<nav>
-    <div class="sidebar-top">
-
-        <a href="#" class="logo__wrapper">
-            <img src="../menu-01/assets/img.png" alt="Logo" class="logo">
-        </a>
-    </div>
-    <div class="sidebar-links">
-        <ul>
-            <li>
-                <a href="#home" title="Home" class="tooltip">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
-                        <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
-                        <path d="M10 12h4v4h-4z"></path>
-                    </svg>
-                    <span class="link hide">Home</span>
-                    <span class="tooltip__content">Home</span>
+                <a href="#" class="logo__wrapper">
+                    <img src="../sidebar-03/assets/img.png" alt="Logo" class="logo">
                 </a>
-            </li>
-            <li>
-                <a href="#portfolio" title="Portfolio" class="tooltip">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-layout-dashboard"
-                         width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none"
-                         stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M4 4h6v8h-6z"></path>
-                        <path d="M4 16h6v4h-6z"></path>
-                        <path d="M14 12h6v8h-6z"></path>
-                        <path d="M14 4h6v4h-6z"></path>
-                    </svg>
-                    <span class="link hide">Portfolio</span>
-                    <span class="tooltip__content">Portfolio</span>
-                </a>
-            </li>
-            <li>
-                <a href="#watchlist" title="Watchlist" class="tooltip">
+            </div>
+            <div class="sidebar-links">
+                <ul>
+                    <li>
+                        <a href="#home" title="Home" class="tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                <path d="M10 12h4v4h-4z"></path>
+                            </svg>
+                            <span class="link hide">Home</span>
+                            <span class="tooltip__content">Home</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#portfolio" title="Portfolio" class="tooltip" data-toggle="modal" data-target="#exampleModal" onclick="handleClickAddForm()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-hospital" viewBox="0 0 16 16">
+                                <path d="M8.5 5.034v1.1l.953-.55.5.867L9 7l.953.55-.5.866-.953-.55v1.1h-1v-1.1l-.953.55-.5-.866L7 7l-.953-.55.5-.866.953.55v-1.1zM13.25 9a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zM13 11.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25zm.25 1.75a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zm-11-4a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5A.25.25 0 0 0 3 9.75v-.5A.25.25 0 0 0 2.75 9zm0 2a.25.25 0 0 0-.25.25v.5c0 .138.112.25.25.25h.5a.25.25 0 0 0 .25-.25v-.5a.25.25 0 0 0-.25-.25zM2 13.25a.25.25 0 0 1 .25-.25h.5a.25.25 0 0 1 .25.25v.5a.25.25 0 0 1-.25.25h-.5a.25.25 0 0 1-.25-.25z"/>
+                                <path d="M5 1a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1a1 1 0 0 1 1 1v4h3a1 1 0 0 1 1 1v7a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V8a1 1 0 0 1 1-1h3V3a1 1 0 0 1 1-1zm2 14h2v-3H7zm3 0h1V3H5v12h1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1zm0-14H6v1h4zm2 7v7h3V8zm-8 7V8H1v7z"/>
+                            </svg>
 
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-                    </svg>
-                    <span class="link hide">Watchlist</span>
-                    <span class="tooltip__content">Watchlist</span>
-                </a>
-            </li>
-            <li>
-                <a href="#explore" title="Explore" class="tooltip">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
-                         stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M8 16l2 -6l6 -2l-2 6l-6 2"></path>
-                        <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
-                    </svg>
-                    <span class="link hide">Explore</span>
-                    <span class="tooltip__content">Explore</span>
-                </a>
-            </li>
-        </ul>
-    </div>
+                            <span class="link hide">Add Room</span>
+                            <span class="tooltip__content">Add Room</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#watchlist" title="Watchlist" class="tooltip">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+                            </svg>
+                            <span class="link hide">Watchlist</span>
+                            <span class="tooltip__content">Watchlist</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#explore" title="Explore" class="tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M8 16l2 -6l6 -2l-2 6l-6 2"></path>
+                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                            </svg>
+                            <span class="link hide">Explore</span>
+                            <span class="tooltip__content">Explore</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
 
 
-    <div class="sidebar-links">
-        <ul>
-            <li>
-                <a href="#home" title="Home" class="tooltip">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
-                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
-                    </svg>
-                    <span class="link hide">log out</span>
-                    <span class="tooltip__content">Home</span>
-                </a>
-            </li>
+            <div class="sidebar-links">
+                <ul>
+                    <li>
+                        <a href="#home" title="Home" class="tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                            </svg>
+                            <span class="link hide">log out</span>
+                            <span class="tooltip__content">Home</span>
+                        </a>
+                    </li>
 
-            <li>
-                <a href="#home" title="Home" class="tooltip">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
-                        <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-                    </svg>
-                    <span class="link hide">log in</span>
-                    <span class="tooltip__content">Home</span>
-                </a>
-            </li>
+                    <li>
+                        <a href="#home" title="Home" class="tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                <path fill-rule="evenodd" d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                            </svg>
+                            <span class="link hide">log in</span>
+                            <span class="tooltip__content">Home</span>
+                        </a>
+                    </li>
 
-        </ul>
-    </div>
+                </ul>
+            </div>
 
-    <div class="sidebar-bottom hide">
+            <div class="sidebar-bottom hide">
 
-        <img src="../menu-01/assets/img.png" alt="Diamond">
-        <p>
-            Welcome to the hotel
-        </p>
+                <img src="../sidebar-03/assets/img.png" alt="Diamond">
+                <p>
+                    Welcome to the hotel
+                </p>
 
-    </div>
-    <div class="expand-btn">
-        <img
-                src="assets/right-collapse.svg"
-                alt="Left Collapse"
-        >
-        <span class="hide">
+            </div>
+            <div class="expand-btn">
+                <img
+                        src="assets/right-collapse.svg"
+                        alt="Left Collapse"
+                >
+                <span class="hide">
                   log out
                 </span>
+            </div>
+        </nav>
+        <div class="content">
+            <div id="roomList">
+                <table class="table">
+                    <tr>
+                        <th>code</th>
+                        <th>description</th>
+                        <th>image</th>
+                        <th>price</th>
+                        <th>status</th>
+                        <th>type</th>
+                        <th>delete</th>
+                        <th>update</th>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </table>
+            </div>
+            <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
+                <ul class="pagination ">
+                    <li class="page-item disabled">
+                        <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
+                           aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" onclick="pageRenderPitch()">1 <span
+                                class="visually-hidden">(current)</span></a>
+                    </li>
+                    <!--            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>-->
+                    <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                    <li class="page-item">
+                        <a class="page-link" onclick="pageRenderPitch()">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
     </div>
-</nav>
 
-
-<div id="roomList">
-
-    <table>
-        <tr>
-            <th>code</th>
-            <th>description</th>
-            <th>image</th>
-            <th>price</th>
-            <th>status</th>
-            <th>type</th>
-            <th>delete</th>
-            <th>update</th>
-        </tr>
-    </table>
 
 </div>
 
-<div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
-    <ul class="pagination ">
-        <li class="page-item disabled">
-            <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
-               aria-disabled="true">Previous</a>
-        </li>
-        <li class="page-item active" aria-current="page">
-            <a class="page-link" onclick="pageRenderPitch()">1 <span
-                    class="visually-hidden">(current)</span></a>
-        </li>
-        <!--            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>-->
-        <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-        <li class="page-item">
-            <a class="page-link" onclick="pageRenderPitch()">Next</a>
-        </li>
-    </ul>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+
+                    <div class="col-xl-12">
+                        <input type="text" id="create-code" placeholder="code">
+                    </div>
+
+                    <div class="col-xl-12">
+                        <input type="text" id="create-description" placeholder="description">
+                    </div>
+
+                    <div class="col-xl-12">
+                        <input type="file" id="create-image" placeholder="image">
+                    </div>
+
+                    <div class="col-xl-12">
+                        <input type="text" id="create-price" placeholder="price">
+                    </div>
+
+                    <div class="col-xl-12 ">
+                        <select id="create-status" name="status"  required>
+                        <option value="true">Active</option>
+                        <option value="false">Inactive</option>
+                    </select>
+                    </div>
+
+                    <div class="col-xl-12">
+                        <select id="create-types" name="status"  required>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="addNewRoom()">ADD ROOM</button>
+            </div>
+        </div>
+    </div>
 </div>
+<script type="module">
+    import { storage } from './fireBaseConfig.js';
+    import { ref, uploadBytesResumable,getDownloadURL  } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-storage.js";
+
+    $(document).ready(function () {
+        $("#create-image").on("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const storageRef = ref(storage, 'images/' + file.name);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    },
+                    (error) => {
+                        console.error('Upload failed:', error);
+                    },
+                    async () => {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        localStorage.setItem("tempImage",JSON.stringify(downloadURL));
+                    }
+                );
+            }
+        })
+    })
+</script>
+
+<script >
+    function handleClickAddForm(){
+        $.ajax({
+            url: `http://localhost:8080/api/types`,
+            type: "GET",
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: "json",
+            success: (response) => {
+                console.log("response",response)
+                let select = $("#create-types");
+                select.empty(); // Clear existing options
+                response.forEach(type => {
+                    select.append(new Option(type.name, type.id));
+                });
+            },
+            error: (e) => {
+                console.log(e);
+            }
+        })
+    }
+
+
+
+</script>
+<script>
+
+</script>
+
+
+
 
 
 
 
 <script src="script.js"></script>
 
-<script src="../dependencies/jquery/jquery.min.js"></script>
-<script src="../dependencies/popper.js/popper.min.js"></script>
-<script src="../dependencies/bootstrap/js/bootstrap.min.js"></script>
-<script src="../dependencies/owl.carousel/js/owl.carousel.min.js"></script>
-<script src="../dependencies/wow/js/wow.min.js"></script>
-<script src="../dependencies/isotope-layout/js/isotope.pkgd.min.js"></script>
-<script src="../dependencies/imagesloaded/js/imagesloaded.pkgd.min.js"></script>
-<script src="../dependencies/jquery.countdown/js/jquery.countdown.min.js"></script>
-<script src="../dependencies/gmap3/js/gmap3.min.js"></script>
-<script src="../dependencies/venobox/js/venobox.min.js"></script>
-<script src="../dependencies/slick-carousel/js/slick.js"></script>
-<script src="../dependencies/headroom/js/headroom.js"></script>
-<script src="../dependencies/jquery-ui/js/jquery-ui.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBsBrMPsyNtpwKXPPpG54XwJXnyobfMAIc"></script>
-<script src="../assets/js/app.js"></script>
+
+<script src="../room/room/room.js"></script>
+
 
 <script>
     function pageRenderPitch(pageIndex) {
@@ -258,5 +362,7 @@
         $("#paging").html(temp);
     }
 </script>
+
+
 </body>
 </html>

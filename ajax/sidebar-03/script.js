@@ -1,4 +1,3 @@
-
 const expand_btn = document.querySelector(".expand-btn");
 const img = expand_btn.querySelector("img");
 
@@ -26,4 +25,14 @@ allLinks.forEach((elem) => {
   })
 });
 
-
+function handleUploadImgFireBase(e){
+  console.log("a",e)
+  // let image = $("#create-image")[0].files[0];
+  // let storageRef =app.storage().ref("/image",image.name);
+  // let upload = storageRef.put(image);
+  // upload.on("state_changed",(snapshot)=>{
+  //     console.log("snapshot",snapshot)
+  // },(error)=>{
+  //     console.log("error",error)
+  // })
+}

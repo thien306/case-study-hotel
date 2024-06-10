@@ -1,13 +1,11 @@
 package com.codegym.configuration;
 
 import com.codegym.repository.IUserRepository;
-
-import com.codegym.security.JwtUserDetailsService;
 import com.codegym.security.JwtAuthEntryPoint;
 import com.codegym.security.JwtAuthFilter;
+import com.codegym.security.JwtUserDetailsService;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -26,8 +24,6 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
-
-import static org.springframework.security.config.Customizer.withDefaults;
 
 
 @Configuration

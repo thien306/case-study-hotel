@@ -70,7 +70,7 @@ function loginCustomer() {
         contentType: "application/json",
         data: JSON.stringify(loginData),
         success: function (data) {
-            window.location.href = "../room/list.html";
+            window.location.href = "../roomcv/list.html";
         },
         error: function (error) {
             alert("Invalid Email or Password");
