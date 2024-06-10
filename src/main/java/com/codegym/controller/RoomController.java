@@ -2,32 +2,35 @@ package com.codegym.controller;
 
 import com.codegym.model.Customer;
 import com.codegym.model.Room;
-import com.codegym.model.Type;
+//import com.codegym.model.Type;
 import com.codegym.service.IRoomService;
-import com.codegym.service.ITypeService;
+//import com.codegym.service.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
+import java.util.Date;
+import java.util.List;
 import java.util.Optional;
 
 
 @RestController
-@CrossOrigin("*")
 @RequestMapping("/api/rooms")
+@CrossOrigin("*")
 public class RoomController {
 
     @Autowired
     private IRoomService roomService;
 
-    @Autowired
-    private ITypeService typeService;
+//    @Autowired
+//    private ITypeService typeService;
 
     @GetMapping
     public ResponseEntity<Page<Room>> getAllRooms(
@@ -46,8 +49,6 @@ public class RoomController {
             roomPage = roomService.findAllByStatusContaining(status, pageable);
         } else if (minPrice != null && maxPrice != null) {
             roomPage = roomService.findAllByPriceBetween(minPrice, maxPrice, pageable);
-        } else if (typeName != null && !typeName.isEmpty()) {
-            roomPage = roomService.findAllByTypeNameContaining(typeName, pageable);
         } else {
             roomPage = roomService.findAll(pageable);
         }
@@ -103,5 +104,12 @@ public class RoomController {
             rooms = roomService.findAll();
         }
         return new ResponseEntity<>(rooms, HttpStatus.OK);
+    }
+
+    @GetMapping("/available")
+    public ResponseEntity<List<Room>> getAvailableRooms(
+            @RequestParam("checkin") @DateTimeFormat(pattern = "yyy-MM-dd") Date checkinDate,
+            @RequestParam("checkout")@DateTimeFormat(pattern = "yyy-MM-dd") Date checkoutDate) {
+        return new ResponseEntity<>(roomService.getAvailableRooms(checkinDate, checkoutDate), HttpStatus.OK);
     }
 }

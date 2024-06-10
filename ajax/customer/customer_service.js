@@ -32,10 +32,10 @@ function createCustomer(){
         contentType: "application/json",
         data: JSON.stringify(customerData),
         success: function (data) {
-            window.location.href = "login.html";
+            window.location.href = "customer_login.html";
         },
         error: function (error) {
-            console.error("Error Created Customer: " + error.message);
+            console.error("Error Created Customer: " + error.responseText || error.statusText);
         }
     })
 }
@@ -65,12 +65,14 @@ function loginCustomer() {
     }
 
     $.ajax({
-        url:"http://localhost:8080/api/auth/login",
+        url:"http://localhost:8080/api/auth/customer/login",
         type:"POST",
         contentType: "application/json",
         data: JSON.stringify(loginData),
         success: function (data) {
-            window.location.href = "../room/list.html";
+            localStorage.setItem("customerId", data.customerId);
+            alert(data.message);
+            window.location.href = "customer_room_list.html";
         },
         error: function (error) {
             alert("Invalid Email or Password");

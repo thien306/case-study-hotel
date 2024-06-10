@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+
+    <style>
+        .hidden{display: none;}
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1>Room List</h1>
+    <div id="roomList">
+        <form id="searchForm">
+            <label for="checkinDate">Check-in Date</label>
+            <input type="date" id="checkinDate">
+
+            <label for="checkoutDate">Check-out Date</label>
+            <input type="date" id="checkoutDate">
+
+            <button type="button" onclick="searchRooms()">Search</button>
+        </form>
+
+        <table border="1px">
+            <thead>
+            <tr>
+                <th class="hidden">Id</th>
+                <th>Description</th>
+                <th>Type</th>
+                <th>Price</th>
+                <th>Status</th>
+                <th>Image</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </div>
+    <script src="customer_room_service.js"></script>
+
+</body>
+</html>

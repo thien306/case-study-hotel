@@ -29,7 +29,6 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-
 @Configuration
 @EnableWebSecurity
 @ComponentScan(basePackageClasses = {
@@ -84,9 +83,12 @@ public class SecurityConfiguration {
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(ses -> ses.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/api/auth/login").permitAll()
+                        .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/api/rooms/**").permitAll()
                         .requestMatchers("/api/types/**").permitAll()
+                        .requestMatchers("/api/bookings/**").permitAll()
+                        .requestMatchers("/api/customers/**").permitAll()
+                        .requestMatchers("/api/homepage/**").permitAll()
                         .anyRequest().authenticated());
 
 ////        // Pages require login with role: ROLE_ADMIN.

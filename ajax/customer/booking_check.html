@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+
+    <h1>Please choose the checkin data and checkout date</h1>
+    <form id="bookingForm">
+        <label for="checkin">Check-in Date</label>
+        <input type="date" id="checkin" name="checkin">
+
+        <label for="checkout">Check-out Date</label>
+        <input type="date" id="checkout" name="checkout">
+
+        <button type="button" onclick="confirmBooking()">Book</button>
+    </form>
+    <script src="booking_check.js"></script>
+
+</body>
+</html>

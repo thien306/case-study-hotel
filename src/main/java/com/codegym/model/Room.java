@@ -3,14 +3,17 @@ package com.codegym.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import java.math.BigDecimal;
 
+import java.awt.print.Book;
+import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode(exclude = {"bookings"})
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,16 +25,17 @@ public class Room {
     @Column(nullable = false)
     private String description;
 
+    @Column(nullable = false)
+    private String type;
+
     private String image;
 
     @Column(nullable = false)
-    private BigDecimal price;
+    private double price;
 
     @Column(nullable = false)
     private boolean status;
 
-    @ManyToOne
-    @JoinColumn(name = "type_id", nullable = false)
-    private Type type;
-
+    @ManyToMany(mappedBy = "rooms")
+    private Set<Booking> bookings;
 }
