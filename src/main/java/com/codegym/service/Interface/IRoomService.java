@@ -1,5 +1,14 @@
-package com.codegym.service.Interface;
+package com.codegym.service;
 
+import com.codegym.model.Room;
+import com.codegym.model.dto.ResponsePage;
+import com.codegym.model.dto.RoomRequestDto;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
 
 import com.codegym.model.Customer;
 import com.codegym.model.Room;
@@ -28,11 +37,12 @@ public interface IRoomService {
 
     Optional<Room> findById(Long id);
 
-    Room save(Room room);
+    ResponsePage save(RoomRequestDto roomRequestDto);
 
     void remove(Long id);
 
     Iterable<Room> findByCodeContaining(String code);
+
     Iterable<Room> findByDate(Date checkin, Date checkout, String type);
     Iterable<Room> findByType(Type type);
 
