@@ -3,14 +3,17 @@ package com.codegym.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@EqualsAndHashCode
 public class Customer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,6 +36,9 @@ public class Customer {
     private int phoneNumber;
 
     private String avatar;
+
+    @OneToMany(mappedBy = "customer")
+    private Set<Booking> bookings;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = false)
