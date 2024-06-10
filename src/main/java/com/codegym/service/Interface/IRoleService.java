@@ -1,4 +1,4 @@
-package com.codegym.service;
+package com.codegym.service.Interface;
 
 import com.codegym.model.dto.RoleDto;
 

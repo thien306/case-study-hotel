@@ -27,11 +27,11 @@ public class Booking {
     private Customer customer;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date bookingDate;
 
     @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     private Date returnDate;
 
     @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)

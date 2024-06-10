@@ -3,12 +3,11 @@ package com.codegym.service.impl;
 import com.codegym.model.dto.UserDto;
 import com.codegym.model.User;
 import com.codegym.repository.IUserRepository;
-import com.codegym.service.IUserService;
+import com.codegym.service.Interface.IUserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.bcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -37,6 +36,16 @@ public class UserServiceImpl implements IUserService {
     public Optional<UserDto> findById(Long id) {
         Optional<User> user = userRepository.findById(id);
         return Optional.ofNullable(modelMapper.map(user, UserDto.class));
+    }
+
+    @Override
+    public void save(User user) {
+        if(!user.getPassword().isEmpty()){
+            String hashedPassword = BCrypt.hashpw(user.getPassword(),BCrypt.gensalt(10));
+            user.setPassword(hashedPassword);
+        }
+        userRepository.save(user);
+
     }
 
     @Override

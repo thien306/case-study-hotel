@@ -113,6 +113,7 @@ function hasUpperCase(value) {
 function hasLowerCase(value) {
     return /[a-z]/.test(value);
 }
+
 let errorCount = 0;
 
 
@@ -132,15 +133,30 @@ function login() {
         method: "POST",
         data: JSON.stringify(user),
         url: "http://localhost:8080/api/auth/login",
-        error : function (xhr,status, error){
-            if(xhr.status ==400){
+        error: function (xhr, status, error) {
+            if (xhr.status == 400) {
                 errorCount++
-                if(errorCount == 5){
-                    window.location.href="../templates/error.html"
+                if (errorCount == 5) {
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: 'You will not be able to revert this!',
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Yes, delete it!',
+                        cancelButtonText: 'No, cancel!',
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // Xử lý khi người dùng xác nhận
+                        } else if (result.dismiss === Swal.DismissReason.cancel) {
+                            // Xử lý khi người dùng hủy bỏ
+                        }
+                    });
+                    alert("sign in too fast")
+                } else {
+                    error = document.getElementById("error").innerText = "User name or password is not correct"
                 }
-                error = document.getElementById("error").innerText="User name or password is not correct"
             }
-           console.log("errors")
+            console.log("errors")
         },
         success: function (data) {
             localStorage.setItem("user", JSON.stringify(data));
@@ -149,3 +165,4 @@ function login() {
         }
     })
 }
+
