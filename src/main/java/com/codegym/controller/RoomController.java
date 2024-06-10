@@ -1,10 +1,8 @@
 package com.codegym.controller;
 
-import com.codegym.model.Customer;
 import com.codegym.model.Room;
-import com.codegym.model.Type;
-import com.codegym.service.IRoomService;
-import com.codegym.service.ITypeService;
+import com.codegym.service.Interface.IRoomService;
+import com.codegym.service.Interface.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

@@ -1,6 +1,7 @@
-package com.codegym.service;
+package com.codegym.service.Interface;
 
 
+import com.codegym.model.User;
 import com.codegym.model.dto.UserDto;
 
 import java.util.List;
@@ -11,6 +12,7 @@ public interface IUserService {
     UserDto getUserById(Long userId);
     Iterable<UserDto> findAll();
     Optional<UserDto> findById(Long id);
-    void save(UserDto userDto);
+    void save(User user);
     void remove(Long id);
+    void save(UserDto userDto);
 }

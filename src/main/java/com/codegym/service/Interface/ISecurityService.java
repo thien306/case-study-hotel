@@ -1,4 +1,4 @@
-package com.codegym.service;
+package com.codegym.service.Interface;
 
 public interface ISecurityService {
     boolean isAuthenticated();

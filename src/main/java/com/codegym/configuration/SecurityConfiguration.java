@@ -7,7 +7,6 @@ import com.codegym.security.JwtAuthEntryPoint;
 import com.codegym.security.JwtAuthFilter;
 import jakarta.servlet.Filter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -87,6 +86,8 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/rooms/**").permitAll()
                         .requestMatchers("/api/types/**").permitAll()
+                        .requestMatchers("/api/customers/**").permitAll()
+                        .requestMatchers("/api/users/**").permitAll()
                         .anyRequest().authenticated());
 
 ////        // Pages require login with role: ROLE_ADMIN.
