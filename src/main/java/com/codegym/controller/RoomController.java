@@ -2,20 +2,33 @@ package com.codegym.controller;
 
 import com.codegym.model.Booking;
 import com.codegym.model.Room;
-import com.codegym.model.RoomBooked;
-import com.codegym.service.Interface.IRoomService;
+
 import com.codegym.service.Interface.ITypeService;
-import com.codegym.service.RoomBookedServiceImpl;
+import com.codegym.model.dto.ResponsePage;
+import com.codegym.model.dto.RoomRequestDto;
+import com.codegym.service.Interface.IRoomService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,15 +36,15 @@ import java.util.Optional;
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/rooms")
-public class RoomController {
-    @Autowired
-    private RoomBookedServiceImpl roomBookedService;
+public class    RoomController {
+
 
     @Autowired
     private IRoomService roomService;
 
     @Autowired
     private ITypeService typeService;
+
 
     @GetMapping
     public ResponseEntity<Page<Room>> getAllRooms(
@@ -40,10 +53,9 @@ public class RoomController {
             @RequestParam(required = false) BigDecimal minPrice,
             @RequestParam(required = false) BigDecimal maxPrice,
             @RequestParam(required = false) String typeName,
-            @PageableDefault(page = 0, size = 3, sort = "destination") Pageable pageable) {
+            @PageableDefault(page = 0, size = 3) Pageable pageable) {
 
         Page<Room> roomPage;
-
         if (!search.isEmpty()) {
             roomPage = roomService.findAllBySearch(search, pageable);
         } else if (status != null) {
@@ -64,10 +76,9 @@ public class RoomController {
 
 
     @PostMapping
-    public ResponseEntity<Room> createRoom(@RequestBody Room room, RedirectAttributes redirectAttributes) {
-        Room savedRoom = roomService.save(room);
-        redirectAttributes.addFlashAttribute("message", "New room created successfully");
-        return new ResponseEntity<>(savedRoom, HttpStatus.CREATED);
+    public ResponseEntity<ResponsePage> createRoom(@RequestBody RoomRequestDto roomRequestDto) {
+        ResponsePage responsePage= roomService.save(roomRequestDto);
+        return new ResponseEntity<>(responsePage, responsePage.getStatus());
     }
 
     @DeleteMapping("/{id}")
@@ -89,10 +100,10 @@ public class RoomController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         room.setId(id);
-        Room updatedRoom = roomService.save(room);
+//        Room updatedRoom = roomService.save(room);
         attributes.addFlashAttribute("message", "Room updated successfully");
 
-        return new ResponseEntity<>(updatedRoom, HttpStatus.OK);
+        return new ResponseEntity<>( HttpStatus.OK);
     }
 
     @PostMapping("/search")
@@ -108,14 +119,7 @@ public class RoomController {
         }
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
-    @GetMapping(value = "/avaiable")
-    public ResponseEntity <?> getRooms(@ModelAttribute Booking booking) {
-        try {
-            List<Room> roomList = roomBookedService.displayListRoom(booking);
-            return new ResponseEntity<>(roomList,HttpStatus.OK);
-        } catch (RuntimeException e) {
-            return ResponseEntity.badRequest().body(e.getMessage());
-        }
-    }
+
+
 
 }

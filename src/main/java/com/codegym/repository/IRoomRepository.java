@@ -4,15 +4,18 @@ import com.codegym.model.Room;
 import com.codegym.model.Type;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
+import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
 
+import java.util.List;
 import java.util.Optional;
 
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Repository;
+
 
 @Repository
 public interface IRoomRepository extends PagingAndSortingRepository<Room, Long> {
@@ -33,5 +36,7 @@ public interface IRoomRepository extends PagingAndSortingRepository<Room, Long> 
     void deleteById(Long id);
 
     Iterable<Room> findAll();
+
     Iterable<Room> findByType(Type type);
+    List<Room> findAllByType(Type type);
 }

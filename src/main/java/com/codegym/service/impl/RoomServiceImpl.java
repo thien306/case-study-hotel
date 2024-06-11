@@ -1,25 +1,43 @@
 package com.codegym.service.impl;
 
+import com.codegym.converter.RoomConverter;
+import com.codegym.model.Booking;
 import com.codegym.model.Room;
-import com.codegym.model.Type;
+import com.codegym.model.dto.ResponsePage;
+import com.codegym.model.dto.RoomRequestDto;
+import com.codegym.repository.IBookingRepository;
 import com.codegym.repository.IRoomRepository;
+import com.codegym.repository.ITypeRepository;
 import com.codegym.service.Interface.IRoomService;
 import com.codegym.util.Validation;
+import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.Errors;
+import com.codegym.model.Type;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Optional;
 
+
 @Service
+@RequiredArgsConstructor
 public class RoomServiceImpl implements IRoomService {
+    private final static Logger LOGGER = LoggerFactory.getLogger(RoomServiceImpl.class);
+    private final RoomConverter roomConverter;
+    private final ITypeRepository typeRepository;
+    @Autowired
+    IBookingRepository bookingRepository;
 
     @Autowired
     private IRoomRepository roomRepository;
@@ -60,14 +78,28 @@ public class RoomServiceImpl implements IRoomService {
     }
 
     @Override
-    public Room save(Room room) {
-        Errors errors = new BeanPropertyBindingResult(room, "room");
-        Validation.checkRoom(room, errors);
-
-        if (errors.hasErrors()) {
-            throw new IllegalArgumentException(errors.getAllErrors().toString());
+    public ResponsePage save(RoomRequestDto roomRequestDto) {
+        LOGGER.info("RoomServiceImpl -> save invoked!!!");
+        Room room = roomConverter.dtoToEntity(roomRequestDto);
+        try {
+            Optional<Type> type = typeRepository.findById(roomRequestDto.getType());
+            if (type.isEmpty()){
+                throw new Exception("type not id");
+            }
+            room.setType(type.get());
+            roomRepository.save(room);
+            return ResponsePage.builder()
+                    .data(null)
+                    .message("create room success")
+                    .status(HttpStatus.OK)
+                    .build();
+        }catch (Exception exception){
+            return ResponsePage.builder()
+                    .data(null)
+                    .message(exception.getMessage())
+                    .status(HttpStatus.BAD_REQUEST)
+                    .build();
         }
-        return roomRepository.save(room);
     }
 
     @Override
@@ -92,5 +124,16 @@ public class RoomServiceImpl implements IRoomService {
         return null;
     }
 
+    @Override
+    public List<Room> getAllRoomBooked(Booking booking) {
+        return null;
+    }
+
+//    @Override
+//    public List<Room> getAllRoomBooked(Booking booking) {
+//        LocalDate checkinDate = booking.getCheckinDate();
+//        List<Room> roomBookedList = bookingRepository.findAllByCheckinDate(checkinDate);
+//        return roomBookedList;
+//    }
 
 }
