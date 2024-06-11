@@ -215,6 +215,7 @@
                                 <option value="false">Inactive</option>
                             </select>
                         </div>
+
                     </div>
                 </div>
 
@@ -261,9 +262,9 @@
 
                     <div class="col-xl-12 ">
                         <select id="create-status" name="status"  required>
-                        <option value="true">Active</option>
-                        <option value="false">Inactive</option>
-                    </select>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
                     </div>
 
                     <div class="col-xl-12">
@@ -403,6 +404,32 @@
 
         $("#paging").html(temp);
     }
+</script>
+
+<script >
+    function handleClickAddForm(){
+        $.ajax({
+            url: `http://localhost:8080/api/types`,
+            type: "GET",
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: "json",
+            success: (response) => {
+                console.log("response",response)
+                let select = $("#create-types");
+                select.empty(); // Clear existing options
+                response.forEach(type => {
+                    select.append(new Option(type.name, type.id));
+                });
+            },
+            error: (e) => {
+                console.log(e);
+            }
+        })
+    }
+
+
+
 </script>
 
 

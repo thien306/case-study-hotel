@@ -14,6 +14,8 @@ import jakarta.persistence.TemporalType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 
@@ -34,15 +36,18 @@ public class Booking {
     @ManyToOne
     @JoinColumn(name = "customer_id", nullable = false)
     private Customer customer;
+    @ManyToOne
+    @JoinColumn(name = "room_id", referencedColumnName = "id")
+    private Room room;
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date bookingDate;
+    private LocalDate checkinDate;
 
     @Column(nullable = false)
     @Temporal(TemporalType.DATE)
-    private Date returnDate;
+    private LocalDate checkoutDate;
+    int roomQuantity;
 
-    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
-    private Set<RoomBooked> roomBooked;
+
 }

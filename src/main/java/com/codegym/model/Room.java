@@ -36,11 +36,9 @@ public class Room {
     @Column(nullable = false)
     private BigDecimal price;
 
-    @Column(nullable = false)
-    private boolean status;
-
     @ManyToOne
     @JoinColumn(name = "type_id", nullable = false)
     private Type type;
-
+    private boolean status;
+    private int quantity;
 }

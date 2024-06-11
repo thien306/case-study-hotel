@@ -21,25 +21,25 @@ html {
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 nav {
-    position: sticky;
-    top: 0;
-    left: 0;
-    min-height: 53.75rem;
-    height: 100%;
-    border-radius: 1rem;
-    width: 18rem;
-    padding: 1rem 0.625rem;
-    display: flex;
-    color: white;
-    flex-direction: column;
-    background-color: #FCFCFD;
-    transition: all 0.1s ease-in-out;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-height: 53.75rem;
+  height: 100%;
+  border-radius: 1rem;
+  width: 18rem;
+  padding: 1rem 0.625rem;
+  display: flex;
+  color: white;
+  flex-direction: column;
+  background-color: #FCFCFD;
+  transition: all 0.1s ease-in-out;
 }
 
 main {
@@ -112,7 +112,7 @@ body.collapsed .sidebar-top {
 .sidebar-links {
   padding: 0.5rem 0px;
   border-top: 1px solid var(
-    --sidebar-gray-background
+          --sidebar-gray-background
   );
 }
 
@@ -173,7 +173,7 @@ body.collapsed .sidebar-top {
 .sidebar-links .active {
   text-decoration: none;
   background-color: var(
-    --primary-color
+          --primary-color
   );
   color: var(--background);
 }
@@ -293,7 +293,7 @@ body.collapsed .expand-btn img {
 .tooltip .tooltip__content {
   visibility: hidden;
   background-color: var(
-    --primary-color
+          --primary-color
   );
   color: var(--text);
   text-align: center;
@@ -341,7 +341,7 @@ body.collapsed .expand-btn img {
 }
 /* CSS cho bảng */
 table {
-  width: 1500px;
+  width: 900px;
   border-collapse: collapse;
   margin-top: 20px; /* Điều chỉnh lại margin-top cho phù hợp */
 }

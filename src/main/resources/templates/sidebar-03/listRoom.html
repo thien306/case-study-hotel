@@ -361,7 +361,7 @@
             method: "GET",
             url: `http://localhost:8080/api/rooms/sort?value=${value}`,
             success: function (data) {
-                console.log(data)
+                console.log(data, "sdsfjsd")
                 let rooms = data.content;
                 displayRooms(rooms);
             },
