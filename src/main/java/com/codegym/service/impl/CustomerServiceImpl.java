@@ -43,4 +43,9 @@ public class CustomerServiceImpl implements ICustomerService {
     public Customer getCustomerByEmail(String email) {
         return customerRepository.findByEmail(email).orElse(null);
     }
+
+    @Override
+    public Customer getCustomerByUsername(String username) {
+        return customerRepository.findByUsername(username).orElse(null);
+    }
 }

@@ -49,19 +49,24 @@ public class UserServiceImpl implements IUserService {
 
     }
 
-    @Override
-    public void save(UserDto userDto) {
-        User user = modelMapper.map(userDto, User.class);
-        if (!userDto.getPassword().isEmpty()) {
-            String hashedPassword = BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt(10));
-            user.setPassword(hashedPassword);
-        }
-        userRepository.save(user);
-    }
+//    @Override
+//    public void save(UserDto userDto) {
+//        User user = modelMapper.map(userDto, User.class);
+//        if (!userDto.getPassword().isEmpty()) {
+//            String hashedPassword = BCrypt.hashpw(userDto.getPassword(), BCrypt.gensalt(10));
+//            user.setPassword(hashedPassword);
+//        }
+//        userRepository.save(user);
+//    }
 
     @Override
     public void remove(Long id) {
         userRepository.deleteById(id);
+    }
+
+    @Override
+    public void changePassword(String username, String newPassword) {
+        userRepository.updatePassword(username, BCrypt.hashpw(newPassword,BCrypt.gensalt(10)));
     }
 
     @Override

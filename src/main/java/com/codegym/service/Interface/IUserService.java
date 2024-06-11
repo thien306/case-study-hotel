@@ -14,5 +14,6 @@ public interface IUserService {
     Optional<UserDto> findById(Long id);
     void save(User user);
     void remove(Long id);
-    void save(UserDto userDto);
+    void changePassword(String username, String newPassword);
+//    void save(UserDto userDto);
 }
