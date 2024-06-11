@@ -27,7 +27,6 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import java.math.BigDecimal;
 import java.util.Optional;
 
-
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/rooms")
