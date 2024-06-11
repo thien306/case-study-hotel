@@ -161,7 +161,7 @@ function login() {
         success: function (data) {
             localStorage.setItem("user", JSON.stringify(data));
             console.log("hello")
-            window.location.href = "../templates/list.html"
+            window.location.href = "../templates/sidebar-03/index.html"
         }
     })
 }

@@ -1,5 +1,6 @@
-package com.codegym.service;
+package com.codegym.service.Interface;
 
+import com.codegym.model.Booking;
 import com.codegym.model.Room;
 import com.codegym.model.dto.ResponsePage;
 import com.codegym.model.dto.RoomRequestDto;
@@ -45,5 +46,6 @@ public interface IRoomService {
 
     Iterable<Room> findByDate(Date checkin, Date checkout, String type);
     Iterable<Room> findByType(Type type);
+    List<Room> getAllRoomBooked(Booking booking);
 
 }
