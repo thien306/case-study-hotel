@@ -77,8 +77,8 @@ public class SecurityConfiguration {
     protected SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors(cors -> cors.configurationSource(corsConfigurationSource()))
                 .csrf(AbstractHttpConfigurer::disable)
-//                .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
-//                .sessionManagement(ses -> ses.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .exceptionHandling(ex -> ex.authenticationEntryPoint(unauthorizedHandler))
+                .sessionManagement(ses -> ses.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/rooms/**").permitAll()
@@ -86,6 +86,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/types/**").permitAll()
                         .requestMatchers("/api/customers/**").permitAll()
                         .requestMatchers("/api/users/**").permitAll()
+                        .requestMatchers("/api/bookings/**").permitAll()
                         .anyRequest().authenticated());
 
 ////        // Pages require login with role: ROLE_ADMIN.

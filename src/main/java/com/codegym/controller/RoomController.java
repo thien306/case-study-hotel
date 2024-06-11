@@ -1,11 +1,13 @@
 package com.codegym.controller;
 
+import com.codegym.model.Booking;
 import com.codegym.model.Room;
+
+import com.codegym.service.Interface.ITypeService;
 import com.codegym.model.dto.ResponsePage;
 import com.codegym.model.dto.RoomRequestDto;
-import com.codegym.service.IRoomService;
-import com.codegym.service.Interface.ITypeService;
-import org.springframework.beans.BeanUtils;
+import com.codegym.service.Interface.IRoomService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -15,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,12 +28,15 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/rooms")
-public class RoomController {
+public class    RoomController {
+
 
     @Autowired
     private IRoomService roomService;
@@ -112,4 +118,7 @@ public class RoomController {
         }
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
+
+
+
 }

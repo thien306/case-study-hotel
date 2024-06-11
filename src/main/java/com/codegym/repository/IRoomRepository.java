@@ -9,13 +9,18 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.math.BigDecimal;
+
+import java.util.List;
 import java.util.Optional;
 
+
+import org.springframework.stereotype.Repository;
+
+
+@Repository
 public interface IRoomRepository extends PagingAndSortingRepository<Room, Long> {
 
     Page<Room> findAllByTypeNameContaining(String typeName, Pageable pageable);
-
-    Page<Room> findAllByStatusContaining(boolean status, Pageable pageable);
 
     Page<Room> findAllByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable);
 
@@ -33,4 +38,5 @@ public interface IRoomRepository extends PagingAndSortingRepository<Room, Long> 
     Iterable<Room> findAll();
 
     Iterable<Room> findByType(Type type);
+    List<Room> findAllByType(Type type);
 }

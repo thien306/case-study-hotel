@@ -24,7 +24,6 @@ public class Type implements Validator {
     @Column(nullable = false, unique = true)
     private String name;
 
-
     @Override
     public boolean supports(Class<?> clazz) {
         return Type.class.isAssignableFrom(clazz);
