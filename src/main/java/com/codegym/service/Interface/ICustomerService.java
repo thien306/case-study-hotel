@@ -18,4 +18,6 @@ public interface ICustomerService {
 
     Customer getCustomerByEmail(String email);
 
+    Customer getCustomerByUsername(String username);
+
 }
