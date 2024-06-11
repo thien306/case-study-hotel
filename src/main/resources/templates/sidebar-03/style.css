@@ -1,11 +1,11 @@
 
 :root {
-    --primary-color: #272727;
-    --text: white;
-    --background: #F4F5FC;
-    --sidebar-gray-background: #DCE1EB;
-    --red: #F55E5E;
-    --item-hover: #F0F0F0;
+  --primary-color: #272727;
+  --text: white;
+  --background: #F4F5FC;
+  --sidebar-gray-background: #DCE1EB;
+  --red: #F55E5E;
+  --item-hover: #F0F0F0;
 }
 
 body {
@@ -14,6 +14,7 @@ body {
   padding: 1rem;
   height: 100%;
 }
+
 
 html {
   height: 100%;
@@ -331,7 +332,7 @@ body.collapsed .expand-btn img {
 
 /* CSS cho phần .content */
 .content {
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -340,7 +341,7 @@ body.collapsed .expand-btn img {
 }
 /* CSS cho bảng */
 table {
-  width: 900px;
+  width: 1500px;
   border-collapse: collapse;
   margin-top: 20px; /* Điều chỉnh lại margin-top cho phù hợp */
 }
@@ -351,10 +352,7 @@ th, td {
   text-align: left;
 }
 
-th {
-  background-color: green;
-  color: white;
-}
+
 
 td .btn {
   margin: 0 5px;
@@ -384,7 +382,7 @@ td {
 /* CSS cho phần header */
 .header {
   background-color: #f4f4f4;
-  padding: 20px;
+  padding: 3px;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
@@ -570,3 +568,78 @@ label {
   border-top: 1px solid #dee2e6;
   padding-top: 10px;
 }
+
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  width: 240px;
+  max-width: 277px;
+  height: 200px;
+}
+
+#user-info {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#user-info span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+#user-info button.user-info {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 35px;
+  margin-left: -3px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#user-info button.user-info:hover {
+  background-color: #0056b3;
+}
+
+.sidebar-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-links ul li {
+  margin: 15px 0;
+}
+
+.sidebar-links ul li a {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-links ul li a svg {
+  margin-right: 10px;
+}
+
+.sidebar-links ul li a:hover {
+  color: #007bff;
+}
+
+.sidebar-links ul li a .tooltip__content {
+  display: none;
+}
+
+input[type="text"], input[type="file"], select {
+  width: 100%;
+  padding: 10px;
+  margin-top: -26px;
+  margin-bottom: -9px;
+  box-sizing: border-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+
+

@@ -20,7 +20,7 @@ public class RoomRequestDto {
     private String description;
     private String image;
     private BigDecimal price;
-    private boolean status;
+    private Boolean status;
     private Long type;
-
+    private Long id;
 }

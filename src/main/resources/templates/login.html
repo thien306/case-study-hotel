@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="../asset/css/login.css"/>
     <link rel="icon" href="../asset/images/logo.png"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <title>Marriott | Login </title>
 </head>
 <body>
@@ -21,6 +20,8 @@
         <img src="../asset/images/logo.png" alt="logo"/>
         MARRIOTT HOTEL
     </div>
+
+
     <div class="sign-up">
         <h3>Sign Up</h3>
         <form method="post">
@@ -72,11 +73,91 @@
     </div>
 </div>
 
-<div id="right"></div>
 <script
         type="text/javascript"
         src="https://cdn.jsdelivr.net/npm/toastify-js"
 ></script>
+
+<script>
+
+    function login() {
+        let username = document.getElementById("username").value;
+        let password = document.getElementById("password").value;
+        let user = {
+            "username": username,
+            "password": password
+        }
+
+        $.ajax({
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+            },
+            method: "POST",
+            data: JSON.stringify(user),
+            url: "http://localhost:8080/api/auth/login",
+            error: function (xhr, status, error) {
+                if (xhr.status == 400) {
+                    errorCount++
+                    if (errorCount == 5) {
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: 'You will not be able to revert this!',
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonText: 'Yes, delete it!',
+                            cancelButtonText: 'No, cancel!',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                // Xử lý khi người dùng xác nhận
+                            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                                // Xử lý khi người dùng hủy bỏ
+                            }
+                        });
+                        alert("sign in too fast")
+                    } else {
+                        error = document.getElementById("error").innerText = "User name or password is not correct"
+                    }
+                }
+                console.log("errors")
+            },
+            success: function (data) {
+                localStorage.setItem("user", JSON.stringify(data));
+                localStorage.setItem("username", username);
+                updateNavLinks();
+                window.location.href = "../templates/sidebar-03/listRoom.html"
+
+            }
+        })
+    }
+
+    function updateNavLinks() {
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            $('#login-link').hide();
+            $('#logout-link').show();
+            $('#user-info').html(`<span> ${username}</span> <button onclick="logout()">Logout</button>`);
+        } else {
+            $('#login-link').show();
+            $('#logout-link').hide();
+            $('#user-info').html('<a href="../templates/login.html">Login</a>');
+        }
+    }
+
+    $(document).ready(function () {
+        updateNavLinks();
+    });
+
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        updateNavLinks();
+        window.location.href = "login.html";
+    }
+
+</script>
+
 <script src="../asset/js/login.js"></script>
 </body>
 </html>

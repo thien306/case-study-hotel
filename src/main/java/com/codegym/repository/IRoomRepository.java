@@ -19,6 +19,10 @@ public interface IRoomRepository extends PagingAndSortingRepository<Room, Long> 
 
     Page<Room> findAllByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable);
 
+    Page<Room> findAllByOrderByPriceAsc(Pageable pageable);
+
+    Page<Room> findAllByOrderByPriceDesc(Pageable pageable);
+
     Iterable<Room> findByCodeContaining(String code);
 
     Optional<Room> findById(Long id);

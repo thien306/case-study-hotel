@@ -6,8 +6,7 @@ import com.codegym.model.dto.ResponsePage;
 import com.codegym.model.dto.RoomRequestDto;
 import com.codegym.repository.IRoomRepository;
 import com.codegym.repository.ITypeRepository;
-import com.codegym.service.IRoomService;
-import com.codegym.util.Validation;
+import com.codegym.service.Interface.IRoomService;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,11 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Service;
-import org.springframework.validation.BeanPropertyBindingResult;
-import org.springframework.validation.Errors;
+import org.springframework.stereotype.Service;;
 import com.codegym.model.Type;
-
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Optional;
@@ -52,6 +48,17 @@ public class RoomServiceImpl implements IRoomService {
     @Override
     public Page<Room> findAllByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable) {
         return roomRepository.findAllByPriceBetween(minPrice, maxPrice, pageable);
+    }
+
+
+    @Override
+    public Page<Room> findAllByOrderByPriceAsc(Pageable pageable) {
+        return roomRepository.findAllByOrderByPriceAsc(pageable);
+    }
+
+    @Override
+    public Page<Room> findAllByOrderByPriceDesc(Pageable pageable) {
+        return roomRepository.findAllByOrderByPriceDesc(pageable);
     }
 
     @Override
