@@ -341,7 +341,7 @@ body.collapsed .expand-btn img {
 }
 /* CSS cho bảng */
 table {
-  width: 900px;
+  width: 1500px;
   border-collapse: collapse;
   margin-top: 20px; /* Điều chỉnh lại margin-top cho phù hợp */
 }
@@ -503,11 +503,7 @@ td {
   border-color: #545b62;
 }
 
-/* Modal styling */
-.modal-content {
-  border-radius: 5px;
-  padding: 20px;
-}
+
 
 .modal-header {
   border-bottom: 1px solid #dee2e6;
@@ -530,7 +526,7 @@ td {
 
 /* Form elements styling */
 .modal-body {
-  margin-top: 10px;
+  margin-top: 3px;
 }
 
 input[type="text"],
@@ -641,5 +637,152 @@ input[type="text"], input[type="file"], select {
   border-radius: 4px;
 }
 
+
+/* Đảm bảo toàn bộ modal được căn giữa và có kích thước hợp lý */
+.modal-dialog {
+  max-width: 600px;
+  margin: 1.75rem auto;
+}
+
+.modal-header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 14.5rem;
+}
+
+.modal-header .close {
+  padding: 1rem;
+  margin: -1rem -1rem -1rem auto;
+}
+
+.modal-title {
+  font-weight: bold;
+
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-body .row {
+  margin-bottom: 170px;
+}
+
+.modal-body .col-xl-12 {
+  margin-bottom: 50px;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="file"],
+.modal-body input[type="number"],
+.modal-body select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+
+.modal-footer {
+  background-color: #f5f5f5;
+  border-top: 0px solid #dee2e6;
+  padding: 0rem 177px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-footer .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.modal-footer .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+
+/* Center the modal vertically */
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+  border-radius: 10px; /* Round the corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Add shadow */
+}
+
+.modal-header {
+  background-color: #007bff; /* Change header background color */
+  color: #fff; /* Change header text color */
+  border-bottom: 1px solid #e9ecef; /* Add bottom border */
+}
+
+.modal-header .close {
+  color: #fff;
+}
+
+.modal-title {
+  font-weight: bold; /* Make the title bold */
+}
+
+.modal-body {
+  padding: 20px; /* Add padding to the body */
+}
+
+.modal-body input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-footer {
+  border-top: 1px solid #e9ecef; /* Add top border */
+  padding: 15px; /* Add padding */
+}
+
+.modal-footer .btn {
+  border-radius: 5px; /* Round button corners */
+  padding: 10px 20px; /* Add padding to buttons */
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.modal-footer .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.modal-footer .btn-secondary:hover,
+.modal-footer .btn-primary:hover {
+  opacity: 0.8; /* Add hover effect */
+}
 
 

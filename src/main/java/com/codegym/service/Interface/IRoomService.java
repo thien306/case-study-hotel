@@ -24,7 +24,7 @@ public interface IRoomService {
 
     Page<Room> findAllByOrderByPriceDesc(Pageable pageable);
 
-    Page<Room> findAllByTypeNameContaining(String typeName, Pageable pageable);
+    Page<Room> findAllByType(Pageable pageable);
 
     Page<Room> findAll(Pageable pageable);
 

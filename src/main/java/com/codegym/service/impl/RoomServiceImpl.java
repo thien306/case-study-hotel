@@ -62,8 +62,8 @@ public class RoomServiceImpl implements IRoomService {
     }
 
     @Override
-    public Page<Room> findAllByTypeNameContaining(String typeName, Pageable pageable) {
-        return roomRepository.findAllByTypeNameContaining(typeName, pageable);
+    public Page<Room> findAllByType(Pageable pageable) {
+        return roomRepository.findAllByType(pageable);
     }
 
     @Override

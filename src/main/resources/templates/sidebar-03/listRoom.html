@@ -10,8 +10,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-
-
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -52,21 +52,21 @@
                     <li>
                         <a href="#watchlist" title="Watchlist" class="tooltip">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 stroke-width="2"
-                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-view-stacked" viewBox="0 0 16 16">
+                                <path d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
                             </svg>
+
                             <span class="link hide">
-									<select class="priceRoom" name="priceRoom">
-								<option>
-                                    <button>Default sorting</button>
-                                </option>
-								<option onclick="priceIncreasesRooms('priceIncreases')" value="popularity">Sort by price from high to low</option>
-								<option onclick="LowPricedRooms('lowPrice')" value="rating">Sort by price from low to high</option>
-								<option selected="selected">Search byg</option>
-							</select>
+								<select id="sortType" class="typeRoom" name="typeRoom" onchange="arrangeRooms()">
+
+								        <option value="ASC">Double room</option>
+
+                                        <option value="DESC">Single room</option>
+
+                                        <option value="DESC">VIP room</option>
+							        </select>
+
                             </span>
                         </a>
                     </li>
@@ -74,16 +74,14 @@
                     <li>
                         <a href="#categoryList" title="categoryList" class="tooltip">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 stroke-width="2"
-                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
                             </svg>
                             <span class="link hide">
 									<select id="sortPrice" class="typeRoom" name="typeRoom" onchange="arrangeRooms()">
 
-								        <option  value="ASC">Low to High</option>
+								        <option value="ASC">Low to High</option>
 
                                         <option value="DESC">High to Low</option>
 							        </select>
@@ -196,6 +194,36 @@
     </div>
 </div>
 
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="modal-body">
+                    <p>Enter Date: <input type="text" id="datepicker-1"></p>
+                    <p>Enter Date: <input type="text" id="datepicker-2"></p>
+                </div>
+
+                <div class="col-xl-12">
+                    <input type="text" id="" placeholder="number of days" />
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script type="text/javascript">
     function displayListRoom() {
@@ -371,9 +399,41 @@
         });
     }
 
+    // function ArrangeRoomType() {
+    //     let value = $('#sortType').val();
+    //     console.log(value);
+    //     $.ajax({
+    //         headers: {
+    //             "Authorization": "Bearer " + token
+    //         },
+    //         method: "GET",
+    //         url: `http://localhost:8080/api/rooms/sort?value=${value}`,
+    //
+    // })
+    // }
+
+    $(document).ready(function () {
+        $("#update-date").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+
+
 </script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!-- Javascript -->
+<script>
+    $(function () {
+        $("#datepicker-1").datepicker();
+        $("#datepicker-2").datepicker();
+    });
 
 
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
 <script src="script.js"></script>
 <script src="room.js"></script>
 </body>

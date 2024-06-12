@@ -13,7 +13,7 @@ import java.util.Optional;
 
 public interface IRoomRepository extends PagingAndSortingRepository<Room, Long> {
 
-    Page<Room> findAllByTypeNameContaining(String typeName, Pageable pageable);
+    Page<Room> findAllByType(Pageable pageable);
 
     Page<Room> findAllByStatusContaining(boolean status, Pageable pageable);
 

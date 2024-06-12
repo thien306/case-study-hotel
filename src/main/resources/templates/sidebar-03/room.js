@@ -61,7 +61,7 @@ function getRoomType(room) {
         <td class="btnbookprice">${room.price}</td>
         <td class="btnbookstatus">${room.status}</td>
         <td class="btnbooktype">${room.type.name}</td>
-        <th class="btnbook"><button type="button" >book room</button></th>
+        <th class="btnbook" data-toggle="modal" data-toggle="modal" data-target="#exampleModalCenter">book room</button></th>
         <th class="btnsee"><button type="button" >See details</button></th>
     </tr>`;
 }
