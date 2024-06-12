@@ -29,7 +29,7 @@
             <div class="sidebar-top">
 
                 <a href="#" class="logo__wrapper">
-                    <img src="../sidebar-03/assets/img.png" alt="Logo" class="logo">
+                    <img src="/templates/sidebar-03/assets/img.png"  alt="Logo" class="logo">
                 </a>
             </div>
             <div class="sidebar-links">
@@ -115,7 +115,7 @@
 
             <div class="sidebar-bottom hide">
 
-                <img src="../sidebar-03/assets/img.png" alt="Diamond">
+                <img src="/templates/sidebar-03/assets/img.png" alt="Diamond">
                 <p>
                     Welcome to the hotel
                 </p>
@@ -137,14 +137,13 @@
                     <tr>
                         <th>code</th>
                         <th>description</th>
-                        <th>image</th>
+                        <th >image</th>
                         <th>price</th>
                         <th>status</th>
                         <th>type</th>
                         <th>delete</th>
-                        <th onclick="" data-toggle="modal" data-target="#exampleModalCenter">update</th>
+                        <th data-toggle="modal" data-target="#exampleModalCenter" onclick="handleClickUpdateForm()">update</th>
                     </tr>
-                    <!-- Add more rows as needed -->
                 </table>
             </div>
             <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
@@ -166,36 +165,70 @@
             </div>
         </div>
     </div>
-
-
 </div>
 
-
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary">
-    Launch demo modal
-</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLongTitle">UPDATE</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                ...
+
+                <div class="modal-body">
+                    <div class="row">
+
+                        <input type="number" id="room-id" hidden>
+
+
+                        <div class="col-xl-12">
+                            <input type="text" id="update-code" placeholder="code">
+                        </div>
+
+                        <div class="col-xl-12">
+                            <input type="text" id="update-description" placeholder="description">
+                        </div>
+
+                        <div class="col-xl-12">
+                            <input type="file" id="update-image" placeholder="image">
+                        </div>
+
+                        <div class="col-xl-12">
+                            <input type="text" id="update-price" placeholder="price" />
+                        </div>
+
+                        <div class="col-xl-12 ">
+                            <select id="update-status" name="status"  required>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+
+                        <div class="col-xl-12">
+                            <select id="update-types" name="status"  required>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+
+                    </div>
+                </div>
+
+
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer" >
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-primary" onclick="updateRoom()">UPDATE ROOM</button>
             </div>
         </div>
     </div>
 </div>
+
 
 
 <!-- Modal -->
@@ -203,7 +236,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">CREATE</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -229,19 +262,15 @@
 
                     <div class="col-xl-12 ">
                         <select id="create-status" name="status"  required>
-                        <option value="true">Active</option>
-                        <option value="false">Inactive</option>
-                    </select>
-                    </div>
-
-                    <div class="col-xl-12">
-                        <select id="create-types" name="status"  required>
                             <option value="true">Active</option>
                             <option value="false">Inactive</option>
                         </select>
                     </div>
 
-
+                    <div class="col-xl-12">
+                        <select id="create-types" name="status"  required>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div class="modal-footer">
@@ -277,46 +306,33 @@
             }
         })
     })
-</script>
 
-<script >
-    function handleClickAddForm(){
-        $.ajax({
-            url: `http://localhost:8080/api/types`,
-            type: "GET",
-            crossDomain: true,
-            contentType: 'application/json',
-            dataType: "json",
-            success: (response) => {
-                console.log("response",response)
-                let select = $("#create-types");
-                select.empty(); // Clear existing options
-                response.forEach(type => {
-                    select.append(new Option(type.name, type.id));
-                });
-            },
-            error: (e) => {
-                console.log(e);
+    $(document).ready(function () {
+        $("#update-image").on("change", (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const storageRef = ref(storage, 'images/' + file.name);
+                const uploadTask = uploadBytesResumable(storageRef, file);
+
+                uploadTask.on('state_changed',
+                    (snapshot) => {
+                        const progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    },
+                    (error) => {
+                        console.error('Upload failed:', error);
+                    },
+                    async () => {
+                        const downloadURL = await getDownloadURL(uploadTask.snapshot.ref);
+                        localStorage.setItem("tempImage",JSON.stringify(downloadURL));
+                    }
+                );
             }
         })
-    }
-
-
-
+    })
 </script>
-<script>
-
-</script>
-
-
-
-
-
 
 
 <script src="script.js"></script>
-
-
 <script src="room.js"></script>
 
 
@@ -388,6 +404,32 @@
 
         $("#paging").html(temp);
     }
+</script>
+
+<script >
+    function handleClickAddForm(){
+        $.ajax({
+            url: `http://localhost:8080/api/types`,
+            type: "GET",
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: "json",
+            success: (response) => {
+                console.log("response",response)
+                let select = $("#create-types");
+                select.empty(); // Clear existing options
+                response.forEach(type => {
+                    select.append(new Option(type.name, type.id));
+                });
+            },
+            error: (e) => {
+                console.log(e);
+            }
+        })
+    }
+
+
+
 </script>
 
 

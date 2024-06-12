@@ -1,13 +1,11 @@
 package com.codegym.controller;
 
-import com.codegym.model.Booking;
 import com.codegym.model.Room;
-
-import com.codegym.service.Interface.ITypeService;
+import com.codegym.model.Type;
 import com.codegym.model.dto.ResponsePage;
 import com.codegym.model.dto.RoomRequestDto;
 import com.codegym.service.Interface.IRoomService;
-
+import com.codegym.service.Interface.ITypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -28,15 +25,13 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.util.List;
 import java.util.Optional;
+
 
 @RestController
 @CrossOrigin("*")
 @RequestMapping("/api/rooms")
-public class    RoomController {
-
+public class RoomController {
 
 
     @Autowired
@@ -74,6 +69,24 @@ public class    RoomController {
         return new ResponseEntity<>(roomPage, HttpStatus.OK);
     }
 
+    @PutMapping
+    public ResponseEntity<ResponsePage> updateRoom(@RequestBody RoomRequestDto roomRequestDto) {
+        Optional<Room> optionalRoom = roomService.findById(roomRequestDto.getId());
+        if (optionalRoom.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        Room room = optionalRoom.get();
+        room.setCode(roomRequestDto.getCode());
+        room.setDescription(roomRequestDto.getDescription());
+        room.setPrice(roomRequestDto.getPrice());
+        room.setStatus(roomRequestDto.getStatus());
+//        room.setType(roomRequestDto.getType());
+
+        ResponsePage responsePage= roomService.save(roomRequestDto);
+        return new ResponseEntity<>(responsePage, responsePage.getStatus());
+    }
+
 
     @PostMapping
     public ResponseEntity<ResponsePage> createRoom(@RequestBody RoomRequestDto roomRequestDto) {
@@ -93,18 +106,12 @@ public class    RoomController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Room> updateRoom(@RequestBody Room room, @PathVariable Long id, RedirectAttributes attributes) {
-        Optional<Room> optionalRoom = roomService.findById(id);
-        if (optionalRoom.isEmpty()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        room.setId(id);
-//        Room updatedRoom = roomService.save(room);
-        attributes.addFlashAttribute("message", "Room updated successfully");
-
-        return new ResponseEntity<>( HttpStatus.OK);
+    @GetMapping("/{id}")
+    public ResponseEntity<Optional<Room> > getRoomById(@PathVariable Long id) {
+        Optional<Room>  responsePage= roomService.findById(id);
+        return new ResponseEntity<>(responsePage, HttpStatus.OK);
     }
+
 
     @PostMapping("/search")
     public ResponseEntity<Iterable<Room>> searchRoom(@RequestParam("search") Optional<String> search) {
@@ -120,6 +127,34 @@ public class    RoomController {
         return new ResponseEntity<>(rooms, HttpStatus.OK);
     }
 
+    @GetMapping("/sort")
+    public ResponseEntity<Page<Room>> sortPrice(@RequestParam(name = "value") String value, Pageable pageable) {
+        Page<Room> sortedRooms;
+
+        if (value.equalsIgnoreCase("ASC")) {
+            sortedRooms = roomService.findAllByOrderByPriceAsc(pageable);
+        } else if (value.equalsIgnoreCase("DESC")) {
+            sortedRooms = roomService.findAllByOrderByPriceDesc(pageable);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(sortedRooms, HttpStatus.OK);
+
+    }
+
+//    @GetMapping("/type")
+//    public ResponseEntity<Page<Room>> sortType(@RequestParam(name = "value") String value, Pageable pageable) {
+//        Page<Room> typeRoom;
+//        Type type = new Type();
+//        type.setName(value);
+//
+//        if (value.equalsIgnoreCase("DON") || value.equalsIgnoreCase("DOI") || value.equalsIgnoreCase("VIP")) {
+//            typeRoom = roomService.findAllByType(pageable);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        return new ResponseEntity<>(typeRoom, HttpStatus.OK);
+//    }
 
 
 }

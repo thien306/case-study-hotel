@@ -32,6 +32,10 @@ public interface IRoomService {
 
     Page<Room> findAllByTypeNameContaining(String typeName, Pageable pageable);
 
+    Page<Room> findAllByOrderByPriceAsc(Pageable pageable);
+
+    Page<Room> findAllByOrderByPriceDesc(Pageable pageable);
+
     Page<Room> findAll(Pageable pageable);
 
     Iterable<Room> findAll();
@@ -47,5 +51,7 @@ public interface IRoomService {
     Iterable<Room> findByDate(Date checkin, Date checkout, String type);
     Iterable<Room> findByType(Type type);
     List<Room> getAllRoomBooked(Booking booking);
+
+
 
 }

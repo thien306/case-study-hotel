@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Sidebar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://code.jquery.com/ui/1.10.4/themes/ui-lightness/jquery-ui.css"
+          rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app">
+    <header class="header">
+        <div class="search-container">
+            <form class="d-flex">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+        </div>
+    </header>
+    <div class="d-flex justify-content-between">
+        <nav>
+            <div class="sidebar-top">
+
+                <a href="#" class="logo__wrapper">
+                    <img src="/templates/sidebar-03/assets/img.png" alt="Logo" class="logo">
+                </a>
+            </div>
+            <div class="sidebar-links">
+                <ul>
+                    <li>
+                        <a href="#home" title="Home" class="tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M5 12l-2 0l9 -9l9 9l-2 0"></path>
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7"></path>
+                                <path d="M10 12h4v4h-4z"></path>
+                            </svg>
+                            <span class="link hide">Home</span>
+                            <span class="tooltip__content">Home</span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#watchlist" title="Watchlist" class="tooltip">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-view-stacked" viewBox="0 0 16 16">
+                                <path d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2m0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                            </svg>
+
+                            <span class="link hide">
+								<select id="sortType" class="typeRoom" name="typeRoom" onchange="arrangeRooms()">
+
+								        <option value="ASC">Double room</option>
+
+                                        <option value="DESC">Single room</option>
+
+                                        <option value="DESC">VIP room</option>
+							        </select>
+
+                            </span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="#categoryList" title="categoryList" class="tooltip">
+
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-search" viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+                            </svg>
+                            <span class="link hide">
+									<select id="sortPrice" class="typeRoom" name="typeRoom" onchange="arrangeRooms()">
+
+								        <option value="ASC">Low to High</option>
+
+                                        <option value="DESC">High to Low</option>
+							        </select>
+                            </span>
+
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#explore" title="Explore" class="tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                 stroke-width="2"
+                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                                <path d="M8 16l2 -6l6 -2l-2 6l-6 2"></path>
+                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                            </svg>
+                            <span class="link hide">Explore</span>
+                            <span class="tooltip__content">Explore</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="sidebar-links">
+                <ul>
+                    <li id="login-link">
+                        <a href="../login.html" title="login" class="tooltip">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0z"/>
+                                <path fill-rule="evenodd"
+                                      d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
+                            </svg>
+                        </a>
+                    </li>
+
+                    <li id="logout-link" style="display:none;">
+                        <a href="#" title="logout" class="tooltip" onclick="logout()">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                      d="M6 3.5a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-2a.5.5 0 0 0-1 0v2A1.5 1.5 0 0 0 6.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-8A1.5 1.5 0 0 0 5 3.5v2a.5.5 0 0 0 1 0z"/>
+                                <path fill-rule="evenodd"
+                                      d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+                            </svg>
+                            <span class="link hide" id="user-info"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+
+            <div class="sidebar-bottom hide">
+
+                <img src="/templates/sidebar-03/assets/img.png" alt="Diamond">
+                <p>
+                    Welcome to the hotel +
+                </p>
+
+            </div>
+            <div class="expand-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-bar-left" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M12.5 15a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5M10 8a.5.5 0 0 1-.5.5H3.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L3.707 7.5H9.5a.5.5 0 0 1 .5.5"/>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                     class="bi bi-arrow-bar-right" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd"
+                          d="M6 8a.5.5 0 0 0 .5.5h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L12.293 7.5H6.5A.5.5 0 0 0 6 8m-2.5 7a.5.5 0 0 1-.5-.5v-13a.5.5 0 0 1 1 0v13a.5.5 0 0 1-.5.5"/>
+                </svg>
+
+            </div>
+        </nav>
+        <div class="content">
+            <div id="roomListType">
+                <table class="table">
+                    <tr>
+                        <th>code</th>
+                        <th>description</th>
+                        <th>image</th>
+                        <th>price</th>
+                        <th>status</th>
+                        <th>type</th>
+                    </tr>
+                </table>
+            </div>
+
+
+            <div class="mb-3 mt-5 d-flex justify-content-center" id="paging">
+                <ul class="pagination ">
+                    <li class="page-item disabled">
+                        <a class="page-link" onclick="pageRenderPitch()" tabindex="-1"
+                           aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active" aria-current="page">
+                        <a class="page-link" onclick="pageRenderPitch()">1 <span
+                                class="visually-hidden">(current)</span></a>
+                    </li>
+                    <!--            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>-->
+                    <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
+                    <li class="page-item">
+                        <a class="page-link" onclick="pageRenderPitch()">Next</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+     aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">BOOKING ROOM</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+
+                <div class="modal-body">
+                    <p>Book from date<input type="text" id="datepicker-1"></p>
+                    <p>Check-out date<input type="text" id="datepicker-2"></p>
+                </div>
+
+                <div class="col-xl-12">
+                    <input type="text"  id="" placeholder="number of rooms">
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function displayListRoom() {
+
+        $.ajax({
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            type: "GET",
+            url: `http://localhost:8080/api/rooms`,
+            processData: false,
+            contentType: false,
+            success: function (data) {
+                let selectedRooms = selectRoomsByTypes(data.content, 3);
+                let content = '<table id="display-list" class="table table-bordered">' +
+                    '<tr>' +
+                    '<th>code</th>' +
+                    '<th>description</th>' +
+                    '<th class="img">image</th>' +
+                    '<th>price</th>' +
+                    '<th>status</th>' +
+                    '<th>type</th>' +
+                    '</tr>';
+
+                for (let i = 0; i < selectedRooms.length; i++) {
+                    content += getRoomType(selectedRooms[i]);
+                }
+                content += "</table>";
+                $("#roomListType").html(content);
+                hideForms();
+            }
+
+        })
+    }
+
+    $(document).ready(function () {
+        displayListRoom();
+    });
+
+    function selectRoomsByTypes(rooms, numberOfTypes) {
+        let types = new Set();
+        let selectedRooms = [];
+
+        for (let i = 0; i < rooms.length; i++) {
+            if (types.size < numberOfTypes && !types.has(rooms[i].type)) {
+                types.add(rooms[i].type);
+                selectedRooms.push(rooms[i]);
+            }
+
+            if (types.size >= numberOfTypes) {
+                break;
+            }
+        }
+        return selectedRooms;
+    }
+</script>
+
+<script>
+    function pageRenderPitch(pageIndex) {
+        $.ajax({
+            url: `http://localhost:8080/api/rooms?&page=${pageIndex}`,
+            type: "GET",
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: "json",
+            success: (response) => {
+                renderBuisiness(response.content, "#roomListType");
+                renderPaging(response.totalPages, response.pageable.pageNumber);
+            },
+            error: (e) => {
+                console.log(e);
+            }
+        })
+    }
+
+
+    function renderBuisiness(response, idRender) {
+        let content = '<table id="display-list" border="1">' +
+            '<tr>' +
+            '<th>code</th>' +
+            '<th>description</th>' +
+            '<th>image</th>' +
+            '<th>price</th>' +
+            '<th>status</th>' +
+            '<th>type</th>' +
+            '</tr>';
+        if (response.length == null || response.length == "") {
+            content = `<div class="text-center"> No List</div>`;
+        } else {
+            for (let i = 0; i < response.length; i++) {
+                content += getRoomType(response[i]);
+            }
+        }
+        content += "</table>";
+        $(idRender).html(content);
+
+    }
+
+    function renderPaging(totalPages, pageNumber) {
+        let temp = "<ul class='pagination'>";
+        if (pageNumber == 0) {
+            temp += `<li class='page-item disabled'><a class="page-link" tabindex="-1" aria-disabled="true">Previous</a></li>`;
+        } else {
+            temp += `<li class='page-item'><a class="page-link" onclick="pageRenderPitch(${pageNumber - 1})">Previous</a></li>`;
+        }
+
+        for (let i = 0; i < totalPages; i++) {
+            if (i == pageNumber) {
+                temp += `<li class="page-item active" aria-current="page">
+                        <a class="page-link" onclick="pageRenderPitch(${i})">${i + 1} <span class="visually-hidden">(current)</span></a>
+                    </li>`;
+            } else {
+                temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitch(${i})">${i + 1}</a></li>`;
+            }
+        }
+
+        if (pageNumber == totalPages - 1) {
+            temp += `<li class="page-item disabled"><a class="page-link" aria-disabled="true">Next</a></li></ul>`;
+        } else {
+            temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitch(${pageNumber + 1})">Next</a></li></ul>`;
+        }
+
+        $("#paging").html(temp);
+    }
+</script>
+
+<script>
+
+    function updateNavLinks() {
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            $('#login-link').hide();
+            $('#logout-link').show();
+            $('#user-info').html(`<span>${username}</span> <button class="user-info" onclick="logout()">Logout</button>`);
+        } else {
+            $('#login-link').show();
+            $('#logout-link').hide();
+            $('#user-info').html('<a href="../login.html">Login</a>');
+        }
+    }
+
+    $(document).ready(function () {
+        updateNavLinks();
+    });
+
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        updateNavLinks();
+        window.location.href = "../templates/login.html";
+    }
+
+    // lấy value sortPrice bằng jquery
+    function arrangeRooms() {
+        let value = $('#sortPrice').val();
+        console.log(value);
+        $.ajax({
+            headers: {
+                "Authorization": "Bearer " + token
+            },
+            method: "GET",
+            url: `http://localhost:8080/api/rooms/sort?value=${value}`,
+            success: function (data) {
+                console.log(data, "sdsfjsd")
+                let rooms = data.content;
+                displayRooms(rooms);
+            },
+            error: function (error) {
+                console.error('Error searching rooms:', error);
+            }
+        });
+    }
+
+    // function ArrangeRoomType() {
+    //     let value = $('#sortType').val();
+    //     console.log(value);
+    //     $.ajax({
+    //         headers: {
+    //             "Authorization": "Bearer " + token
+    //         },
+    //         method: "GET",
+    //         url: `http://localhost:8080/api/rooms/sort?value=${value}`,
+    //
+    // })
+    // }
+
+    $(document).ready(function () {
+        $("#update-date").datepicker({
+            dateFormat: "yy-mm-dd"
+        });
+    });
+
+
+</script>
+<script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+<script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+
+<!-- Javascript -->
+<script>
+    $(function () {
+        $("#datepicker-1").datepicker();
+        $("#datepicker-2").datepicker();
+    });
+
+
+</script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script src="script.js"></script>
+<script src="room.js"></script>
+</body>
+</html>

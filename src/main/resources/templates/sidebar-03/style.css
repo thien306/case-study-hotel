@@ -1,11 +1,11 @@
 
 :root {
-    --primary-color: #272727;
-    --text: white;
-    --background: #F4F5FC;
-    --sidebar-gray-background: #DCE1EB;
-    --red: #F55E5E;
-    --item-hover: #F0F0F0;
+  --primary-color: #272727;
+  --text: white;
+  --background: #F4F5FC;
+  --sidebar-gray-background: #DCE1EB;
+  --red: #F55E5E;
+  --item-hover: #F0F0F0;
 }
 
 body {
@@ -15,30 +15,31 @@ body {
   height: 100%;
 }
 
+
 html {
   height: 100%;
 }
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 nav {
-    position: sticky;
-    top: 0;
-    left: 0;
-    min-height: 53.75rem;
-    height: 100%;
-    border-radius: 1rem;
-    width: 18rem;
-    padding: 1rem 0.625rem;
-    display: flex;
-    color: white;
-    flex-direction: column;
-    background-color: #FCFCFD;
-    transition: all 0.1s ease-in-out;
+  position: sticky;
+  top: 0;
+  left: 0;
+  min-height: 53.75rem;
+  height: 100%;
+  border-radius: 1rem;
+  width: 18rem;
+  padding: 1rem 0.625rem;
+  display: flex;
+  color: white;
+  flex-direction: column;
+  background-color: #FCFCFD;
+  transition: all 0.1s ease-in-out;
 }
 
 main {
@@ -111,7 +112,7 @@ body.collapsed .sidebar-top {
 .sidebar-links {
   padding: 0.5rem 0px;
   border-top: 1px solid var(
-    --sidebar-gray-background
+          --sidebar-gray-background
   );
 }
 
@@ -172,7 +173,7 @@ body.collapsed .sidebar-top {
 .sidebar-links .active {
   text-decoration: none;
   background-color: var(
-    --primary-color
+          --primary-color
   );
   color: var(--background);
 }
@@ -292,7 +293,7 @@ body.collapsed .expand-btn img {
 .tooltip .tooltip__content {
   visibility: hidden;
   background-color: var(
-    --primary-color
+          --primary-color
   );
   color: var(--text);
   text-align: center;
@@ -331,7 +332,7 @@ body.collapsed .expand-btn img {
 
 /* CSS cho phần .content */
 .content {
-  display: flex;
+  /*display: flex;*/
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
@@ -340,7 +341,7 @@ body.collapsed .expand-btn img {
 }
 /* CSS cho bảng */
 table {
-  width: 900px;
+  width: 1500px;
   border-collapse: collapse;
   margin-top: 20px; /* Điều chỉnh lại margin-top cho phù hợp */
 }
@@ -351,10 +352,7 @@ th, td {
   text-align: left;
 }
 
-th {
-  background-color: green;
-  color: white;
-}
+
 
 td .btn {
   margin: 0 5px;
@@ -384,7 +382,7 @@ td {
 /* CSS cho phần header */
 .header {
   background-color: #f4f4f4;
-  padding: 20px;
+  padding: 3px;
   text-align: center;
   width: 100%;
   box-sizing: border-box;
@@ -505,11 +503,7 @@ td {
   border-color: #545b62;
 }
 
-/* Modal styling */
-.modal-content {
-  border-radius: 5px;
-  padding: 20px;
-}
+
 
 .modal-header {
   border-bottom: 1px solid #dee2e6;
@@ -532,7 +526,7 @@ td {
 
 /* Form elements styling */
 .modal-body {
-  margin-top: 10px;
+  margin-top: 3px;
 }
 
 input[type="text"],
@@ -570,3 +564,225 @@ label {
   border-top: 1px solid #dee2e6;
   padding-top: 10px;
 }
+
+
+img {
+  vertical-align: middle;
+  border-style: none;
+  width: 240px;
+  max-width: 277px;
+  height: 200px;
+}
+
+#user-info {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#user-info span {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+#user-info button.user-info {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 5px 35px;
+  margin-left: -3px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+#user-info button.user-info:hover {
+  background-color: #0056b3;
+}
+
+.sidebar-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar-links ul li {
+  margin: 15px 0;
+}
+
+.sidebar-links ul li a {
+  text-decoration: none;
+  color: #333;
+  display: flex;
+  align-items: center;
+}
+
+.sidebar-links ul li a svg {
+  margin-right: 10px;
+}
+
+.sidebar-links ul li a:hover {
+  color: #007bff;
+}
+
+.sidebar-links ul li a .tooltip__content {
+  display: none;
+}
+
+input[type="text"], input[type="file"], select {
+  width: 100%;
+  padding: 10px;
+  margin-top: -26px;
+  margin-bottom: -9px;
+  box-sizing: border-box;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+}
+
+
+/* Đảm bảo toàn bộ modal được căn giữa và có kích thước hợp lý */
+.modal-dialog {
+  max-width: 600px;
+  margin: 1.75rem auto;
+}
+
+.modal-header {
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #dee2e6;
+  padding: 1rem 14.5rem;
+}
+
+.modal-header .close {
+  padding: 1rem;
+  margin: -1rem -1rem -1rem auto;
+}
+
+.modal-title {
+  font-weight: bold;
+
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-body .row {
+  margin-bottom: 170px;
+}
+
+.modal-body .col-xl-12 {
+  margin-bottom: 50px;
+}
+
+.modal-body input[type="text"],
+.modal-body input[type="file"],
+.modal-body input[type="number"],
+.modal-body select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  font-size: 1rem;
+}
+
+
+.modal-footer {
+  background-color: #f5f5f5;
+  border-top: 0px solid #dee2e6;
+  padding: 0rem 177px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modal-footer .btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+  color: white;
+}
+
+.modal-footer .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.modal-footer .btn-secondary:hover {
+  background-color: #5a6268;
+  border-color: #545b62;
+}
+
+.modal-footer .btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+
+/* Center the modal vertically */
+.modal-dialog-centered {
+  display: flex;
+  align-items: center;
+  min-height: calc(100% - 1rem);
+}
+
+.modal-content {
+  border-radius: 10px; /* Round the corners */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Add shadow */
+}
+
+.modal-header {
+  background-color: #007bff; /* Change header background color */
+  color: #fff; /* Change header text color */
+  border-bottom: 1px solid #e9ecef; /* Add bottom border */
+}
+
+.modal-header .close {
+  color: #fff;
+}
+
+.modal-title {
+  font-weight: bold; /* Make the title bold */
+}
+
+.modal-body {
+  padding: 20px; /* Add padding to the body */
+}
+
+.modal-body input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.modal-footer {
+  border-top: 1px solid #e9ecef; /* Add top border */
+  padding: 15px; /* Add padding */
+}
+
+.modal-footer .btn {
+  border-radius: 5px; /* Round button corners */
+  padding: 10px 20px; /* Add padding to buttons */
+}
+
+.modal-footer .btn-secondary {
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.modal-footer .btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.modal-footer .btn-secondary:hover,
+.modal-footer .btn-primary:hover {
+  opacity: 0.8; /* Add hover effect */
+}
+
+

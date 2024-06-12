@@ -68,6 +68,16 @@ public class RoomServiceImpl implements IRoomService {
     }
 
     @Override
+    public Page<Room> findAllByOrderByPriceAsc(Pageable pageable) {
+        return roomRepository.findAllByOrderByPriceAsc(pageable);
+    }
+
+    @Override
+    public Page<Room> findAllByOrderByPriceDesc(Pageable pageable) {
+        return roomRepository.findAllByOrderByPriceDesc(pageable);
+    }
+
+    @Override
     public Iterable<Room> findAll() {
         return roomRepository.findAll();
     }
@@ -128,6 +138,7 @@ public class RoomServiceImpl implements IRoomService {
     public List<Room> getAllRoomBooked(Booking booking) {
         return null;
     }
+
 
 //    @Override
 //    public List<Room> getAllRoomBooked(Booking booking) {

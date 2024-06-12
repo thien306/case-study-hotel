@@ -28,10 +28,10 @@ $(document).ready(function () {
     displayRoomList();
 });
 
-// let rs = docLocalStorage();
-// if (rs == null) {
-//     window.location.href = "listRoom.html";
-// }
+let rs = docLocalStorage();
+if (rs == null) {
+    // window.location.href = "listRoom.html";
+}
 let token = rs.token;
 
 function docLocalStorage() {
@@ -49,63 +49,87 @@ function getRoom(room) {
         <td>${room.status}</td>
         <td>${room.type.name}</td>
         <th class="btn"><button class="deleteRoom" onclick="deleteRoom(${room.id})">Delete</button></th>
-        <th class="btn"><button class="updateRoom" onclick='showUpdateForm(${room.id})'>Update</button></th>
+        <th class="btn"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" onclick='showUpdateForm(${room.id})'>Update</button></th>
     </tr>`;
 }
+
+function getRoomType(room) {
+    return `<tr>
+        <td class="btnbookcode">${room.code}</td>
+        <td class="btnbookdescription">${room.description}</td>
+        <td class="btnbookimg"><img src="${room.image}"></td>
+        <td class="btnbookprice">${room.price}</td>
+        <td class="btnbookstatus">${room.status}</td>
+        <td class="btnbooktype">${room.type.name}</td>
+        <th class="btnbook" data-toggle="modal" data-toggle="modal" data-target="#exampleModalCenter">book room</button></th>
+        <th class="btnsee"><button type="button" >See details</button></th>
+    </tr>`;
+}
+
+function getRoomPrice(room) {
+    return `<tr>
+        <td class="btnbookcode">${room.code}</td>
+        <td class="btnbookdescription">${room.description}</td>
+        <td class="btnbookimg"><img src="${room.image}"></td>
+        <td class="btnbookprice">${room.price}</td>
+        <td class="btnbookstatus">${room.status}</td>
+        <td class="btnbooktype">${room.type.name}</td>
+        <th class="btnbook"><button type="button" >book room</button></th>
+        <th class="btnsee"><button type="button" >See details</button></th>
+    </tr>`;
+}
+
 function showUpdateForm(id) {
-    console.log("asd,",id)
-    $("#show-update").show();
+    console.log("asd,", id)
+
     $.ajax({
         headers: {
-            "Authorization": "Bearer " + token
+            "Authorization": `Bearer ${token}`,
+            'Content-Type': 'application/json'
         },
-        method: "GET",
-        url: `http://localhost:8080/api/rooms?id=${id}`,
-        success: function (data) {
-            $('#room-id').val(data.id);
-            $('#update-code').val(data.code);
-            $('#update-description').val(data.description);
-            $('#update-image').val(data.image);
-            $('#update-price').val(data.price);
-            $('#update-status').val(data.status);
+        type: "GET",
+        url: `http://localhost:8080/api/rooms/${id}`,
+        // data: JSON.stringify(formUpdateData)
+        success: function (res) {
+            $("#exampleModalCenter").click();
+            handleClickUpdateForm();
+            $('#room-id').val(res.id);
+            $('#update-code').val(res.code);
+            $('#update-description').val(res.description);
+            $('#update-price').val(res.price);
+            $('#update-image').val(res.image);
+            $('#update-status').val(res.status.toString());
+            $('#update-types').val(res.types.toString());
 
-            $('#update-type').val(data.typeList);
+        },
+        error: function (error) {
+            console.error('Error searching rooms:', error);
         }
     });
 
-    // $('#room-id').val(room.id);
-    // $('#update-code').val(room.code);
-    // $('#update-description').val(room.description);
-    // $('#update-image').val(room.image);
-    // $('#update-price').val(room.price);
-    // $('#update-status').val(room.status);
-    // $('#update-type').val(room.type);
-    //
-    // currentUpdateId = room.id;
-
-    // hideForms()
 }
 
 function addNewRoom() {
     let tempImage = localStorage.getItem("tempImage");
-    if(tempImage){
+    if (tempImage) {
         const code = $('#create-code').val();
         const description = $('#create-description').val();
         const image = JSON.parse(tempImage);
-        const price =$('#create-price').val();
+        const price = $('#create-price').val();
         const status = $('#create-status').val();
         const type = $('#create-types').val();
         const formData = {
-            'code':code,
-            'description':description,
-            'image':image,
-            'price':price,
-            'status':status,
-            'type':type,
+            'code': code,
+            'description': description,
+            'image': image,
+            'price': price,
+            'status': status,
+            'type': type,
         }
+        console.log(formData)
         $.ajax({
             headers: {
-                "Authorization": `Bearer ${token}` ,
+                "Authorization": `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
             type: "POST",
@@ -118,7 +142,7 @@ function addNewRoom() {
                 displayFormCreate();
                 localStorage.removeItem("tempImage");
             },
-            error: function ( error) {
+            error: function (error) {
                 console.error('Error searching rooms:', error);
             }
         });
@@ -134,41 +158,60 @@ function displayFormCreate() {
     document.getElementById('title').style.display = "none";
 }
 
+
+function displayFormUpdate() {
+    document.getElementById('roomList').style.display = "none";
+    document.getElementById('add-room').style.display = "none";
+    document.getElementById('update-room').style.display = "block";
+    document.getElementById('display-create').style.display = "none";
+    document.getElementById('title').style.display = "none";
+}
+
 let currentUpdateId = null;
 
 
-
 function updateRoom(id) {
-    const code = $('#update-code').val();
-    const description = $('#update-description').val();
-    const image = $('#update-image')[0].files[0];
-    console.log(image);
+    let tempImage = localStorage.getItem("tempImage");
+    let formData = null;
+    if (tempImage) {
+        const id = $('#room-id').val();
+        const code = $('#update-code').val();
+        const description = $('#update-description').val();
+        const image = JSON.parse(tempImage);
+        const price = $('#update-price').val();
+        const status = $('#update-status').val();
+        const type = $('#update-types').val();
 
-    const price = $('#update-price').val();
-    const status = $('#update-status').val();
-    const type = $('#update-type').val();
-
-    const formData = new FormData();
-    formData.append('code', code);
-    formData.append('description', description);
-    formData.append('image', image);
-    formData.append('price', price);
-    formData.append('status', status);
-    formData.append('type', type);
-
+        formData = {
+            'id': id,
+            'code': code,
+            'description': description,
+            'image': image,
+            'price': price,
+            'status': status,
+            'type': type,
+        }
+    }
+    console.log(formData)
     $.ajax({
         headers: {
-            "Authorization": "Bearer " + token
+            "Authorization": `Bearer ${token}`,
+            'Content-Type': 'application/json'
         },
         type: "PUT",
-        url: `http://localhost:8080/api/rooms/${id}`,
-        data: formData,
+        url: `http://localhost:8080/api/rooms`,
+        data: JSON.stringify(formData),
         processData: false,
         contentType: false,
-        success: function () {
-            alert("Room updated successfully!");
+        success: function (res) {
+            $("#exampleModalCenter").click();
+            alert(res?.message);
             displayRoomList();
-            hideForms();
+            displayFormUpdate();
+            localStorage.removeItem("tempImage");
+        },
+        error: function (error) {
+            console.error('Error searching rooms:', error);
         }
     });
 }
@@ -226,7 +269,7 @@ function displayRoomList() {
             let content = '<table id="display-list" border="1"><tr>' +
                 '<th>code</th>' +
                 '<th>description</th>' +
-                '<th>image</th>' +
+                '<th class="img">image</th>' +
                 '<th>price</th>' +
                 '<th>status</th>' +
                 '<th>type</th>' +
@@ -239,4 +282,48 @@ function displayRoomList() {
             hideForms();
         }
     });
+
 }
+
+function handleClickUpdateForm() {
+    $.ajax({
+        url: 'http://localhost:8080/api/types',
+        type: 'GET',
+        crossDomain: true,
+        contentType: 'application/json',
+        dataType: "json",
+        success: (response) => {
+            console.log("response", response)
+            let select = $("#update-types");
+            select.empty();
+            response.forEach(type => {
+                select.append(new Option(type.name, type.id));
+            });
+        },
+        error: (e) => {
+            console.log(e);
+        }
+    })
+}
+
+
+function displayRooms(rooms) {
+    let content = '<table id="display-list" border="1"><tr>' +
+        '<th>code</th>' +
+        '<th>description</th>' +
+        '<th class="img">image</th>' +
+        '<th>price</th>' +
+        '<th>status</th>' +
+        '<th>type</th>' +
+        '</tr>';
+    for (let i = 0; i < rooms.length; i++) {
+        content += getRoomPrice(rooms[i]);
+    }
+    content += "</table>";
+    $("#roomListType").html(content);
+    hideForms();
+}
+
+
+
+
