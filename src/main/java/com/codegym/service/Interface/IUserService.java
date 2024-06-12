@@ -2,6 +2,7 @@ package com.codegym.service.Interface;
 
 
 import com.codegym.model.User;
+import com.codegym.model.dto.UpdatePasswordRequest;
 import com.codegym.model.dto.UserDto;
 
 import java.util.List;
@@ -14,6 +15,6 @@ public interface IUserService {
     Optional<UserDto> findById(Long id);
     void save(User user);
     void remove(Long id);
-    void changePassword(String username, String newPassword);
+    boolean changePassword(UpdatePasswordRequest request);
 //    void save(UserDto userDto);
 }

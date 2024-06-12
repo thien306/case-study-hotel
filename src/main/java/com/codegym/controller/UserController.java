@@ -10,6 +10,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -24,17 +25,13 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED);
     }
 
-    @PostMapping("/update-password")
-    public ResponseEntity<?> updatePassword(@RequestBody UpdatePasswordRequest request,
-                                            @AuthenticationPrincipal UserDetails userDetails){
-        String username = userDetails.getUsername();
-        String newPassword = userDetails.getPassword();
-
-        try {
-            userService.changePassword(username, newPassword);
-            return ResponseEntity.ok("Password updated successfully");
-        } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error while updating password " + e.getMessage());
+    @PutMapping("/update-password")
+    public ResponseEntity<?> updatePassword(@RequestBody UpdatePasswordRequest request){
+        boolean isChanged = userService.changePassword(request);
+        if(isChanged){
+            return ResponseEntity.ok().body("Password changed successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("failed to change password");
         }
     }
 

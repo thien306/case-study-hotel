@@ -1,19 +1,13 @@
 package com.codegym.model.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-@Setter
-@Getter
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@Builder
 public class UpdatePasswordRequest {
-    private String username;
+    private String currentPassword;
     private String newPassword;
-
-    public UpdatePasswordRequest() {
-    }
-
-    public UpdatePasswordRequest(String username, String newPassword) {
-        this.username = username;
-        this.newPassword = newPassword;
-    }
+    private String confirmPassword;
 }

@@ -1,11 +1,16 @@
 package com.codegym.service.impl;
 
 import com.codegym.model.User;
+import com.codegym.model.dto.UpdatePasswordRequest;
 import com.codegym.model.dto.UserDto;
 import com.codegym.repository.IUserRepository;
 import com.codegym.service.Interface.IUserService;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,14 +21,17 @@ import java.util.stream.StreamSupport;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class UserServiceImpl implements IUserService {
+
+    private final PasswordEncoder passwordEncoder;
     private final IUserRepository userRepository;
     private final ModelMapper modelMapper;
 
-    public UserServiceImpl(IUserRepository userRepository, ModelMapper modelMapper) {
-        this.userRepository = userRepository;
-        this.modelMapper = modelMapper;
-    }
+//    public UserServiceImpl(IUserRepository userRepository, ModelMapper modelMapper) {
+//        this.userRepository = userRepository;
+//        this.modelMapper = modelMapper;
+//    }
 
     @Override
     public Iterable<UserDto> findAll() {
@@ -65,8 +73,18 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public void changePassword(String username, String newPassword) {
-        userRepository.updatePassword(username, BCrypt.hashpw(newPassword,BCrypt.gensalt(10)));
+    public boolean changePassword(UpdatePasswordRequest request) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String username = authentication.getName();
+        if (username != null){
+            User user = userRepository.findByUsername(username);
+            if(passwordEncoder.matches(request.getCurrentPassword(), user.getPassword())){
+                user.setPassword(passwordEncoder.encode(request.getNewPassword()));
+                userRepository.save(user);
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override

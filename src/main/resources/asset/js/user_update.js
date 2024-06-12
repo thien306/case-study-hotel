@@ -1,53 +1,59 @@
 function getUserDetail() {
     let userString = localStorage.getItem("user");
     if (userString) {
-        let user = JSON.parse(userString);
-        if (user && user.token) {
-            return user;
-        }
+        return JSON.parse(userString);
     }
     return null;
 }
 
-let userPrinciple = getUserDetail();
+// let userPrinciple = getUserDetail();
 let token = null;
-if (userPrinciple) {
-    token = userPrinciple.token;
+let user = getUserDetail();
+if (user) {
+    token = user.token;
 }
-const user = userPrinciple;
-if (!user){
-    window.location.href = "../../templates/login.html";
-}
+
+$(document).ready(function () {
+    let user = getUserDetail();
+    if (user) {
+        $('#username').val(user.username);
+    }
+})
 
 function updatePassword() {
-    const newPassword = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirmPassword").value;
+    let currentPassword = $('#currentPassword').val();
+    let newPassword = $('#newPassword').val();
+    let confirmPassword = $('#confirmPassword').val();
 
     if (newPassword !== confirmPassword) {
-        $('#alertError').removeClass("d-none").text("New password and confirm password do not match");
+        $('#alertError').removeClass('d-none').text('New password and confirm password do not match');
         return;
     }
 
-    const request = {
+    let request = {
+        currentPassword: currentPassword,
         newPassword: newPassword,
-    }
+        confirmPassword: confirmPassword
+    };
 
     $.ajax({
         url: "http://localhost:8080/api/users/update-password",
         method: "PUT",
         headers: {
-            "Authorization": `Bearer ${token}`,
+            "Authorization": `Bearer ` + token,
             "Content-Type": "application/json",
         },
         data: JSON.stringify(request),
-        success: function (response) {
+        success: function(response) {
             $('#alertSuccess').removeClass("d-none").text(response);
-            window.location.href = "../../templates/list.html";
+            $('#currentPassword').val('');
+            $('#newPassword').val('');
+            $('#confirmPassword').val('');
         },
-        error: function (xhr, status, error) {
+        error: function(xhr, status, error) {
             $('#alertError').removeClass("d-none").text(xhr.responseText);
         }
-    })
+    });
 }
 
 // $("button").click(function () {

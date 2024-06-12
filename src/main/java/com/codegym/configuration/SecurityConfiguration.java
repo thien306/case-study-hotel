@@ -82,10 +82,10 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/auth/login").permitAll()
                         .requestMatchers("/api/rooms/**").permitAll()
-//                        .requestMatchers("/api/rooms").permitAll()
                         .requestMatchers("/api/types/**").permitAll()
                         .requestMatchers("/api/customers/**").permitAll()
                         .requestMatchers("/api/users/**").permitAll()
+                        .requestMatchers("/api/users/update-password").permitAll()
                         .requestMatchers("/api/bookings/**").permitAll()
                         .anyRequest().authenticated());
 
