@@ -16,7 +16,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  width: 40%;
+  width: 35%;
   padding: 0 5rem;
 }
 
@@ -29,7 +29,7 @@ body {
 }
 
 #left .logo img {
-  height: 3rem;
+  height: 2rem;
 }
 
 .sign-up {
@@ -57,7 +57,7 @@ body {
   padding: 0 1rem;
 }
 
-.form-field 
+.form-field
 .material-symbols-outlined {
   height: 100%;
   display: flex;
@@ -71,7 +71,7 @@ body {
   width: 100%;
   outline: none;
 }
-.form-field 
+.form-field
 .material-symbols-outlined.eye-icon {
   height: 100%;
   display: flex;
@@ -103,11 +103,10 @@ body {
 
 #right {
   background-image:
-  url("../images/rightside.png");
-  background-size: 100%;
+          url("images/bg.jpg");
+  background-size: cover;
   background-repeat: no-repeat;
-  width: 60%;
-  height: 100%;
+  width: 65%;
   opacity: 0.8;
 }
 
@@ -125,7 +124,7 @@ body {
   background-color: #eeeeee;
   height: 0px;
   transition: height 0.3s ease,
-   transform 0.3s ease;
+  transform 0.3s ease;
 }
 
 #meter-inner {
@@ -133,7 +132,7 @@ body {
   border-radius: 10px;
   height: 100%;
   width: 0%;
-  transition: 0.8s 
+  transition: 0.8s
   cubic-bezier(0.445, 0.05, 0.55, 0.95);
 }
 
@@ -183,7 +182,7 @@ body {
   background: #2ed573 !important;
 }
 
-@media only screen and 
+@media only screen and
 (max-width: 1024px) {
   #left {
     width: 50%;
@@ -196,7 +195,7 @@ body {
 }
 
 @media only screen and
- (max-width: 600px) {
+(max-width: 600px) {
   #left {
     width: 100%;
   }
@@ -213,6 +212,4 @@ body {
   #left .logo img {
     height: 3rem;
   }
-
-
 }

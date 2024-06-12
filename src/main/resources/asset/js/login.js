@@ -116,7 +116,7 @@ function hasLowerCase(value) {
 
 let errorCount = 0;
 
-
+// đã đưa sang login
 function login() {
     let username = document.getElementById("username").value;
     let password = document.getElementById("password").value;
@@ -161,7 +161,7 @@ function login() {
         success: function (data) {
             localStorage.setItem("user", JSON.stringify(data));
             console.log("hello")
-            window.location.href = "../templates/sidebar-03/index.html"
+            window.location.href = "../templates/list.html"
         }
     })
 }
