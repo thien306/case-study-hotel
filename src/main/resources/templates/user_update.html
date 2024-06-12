@@ -17,23 +17,22 @@
 
     <form id="updateUserForm">
         <div class="mb-3">
-            <label for="username" class="form-label">Username:</label>
-            <input type="text" class="form-control" id="username" value="${user.username}" readonly>
-        </div>
-        <!--        <div class="mb-3">-->
-        <!--            <label for="currentPassword" class="form-label">Current Password:</label>-->
-        <!--            <input type="password" class="form-control" id="currentPassword" required>-->
-        <!--        </div>-->
-        <div class="mb-3">
-            <label for="password" class="form-label">New Password:</label>
-            <input type="password" class="form-control" id="password" required>
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" readonly>
         </div>
         <div class="mb-3">
-            <label for="confirmPassword" class="form-label">Confirm New Password:</label>
+            <label for="currentPassword" class="form-label">Current Password</label>
+            <input type="password" class="form-control" id="currentPassword" required>
+        </div>
+        <div class="mb-3">
+            <label for="newPassword" class="form-label">New Password</label>
+            <input type="password" class="form-control" id="newPassword" required>
+        </div>
+        <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm New Password</label>
             <input type="password" class="form-control" id="confirmPassword" required>
         </div>
-
-        <button type="button" class="btn btn-primary w-100" onclick="updatePassword()">Update</button>
+        <button type="button" class="btn btn-primary" onclick="updatePassword()">Update Password</button>
     </form>
 </div>
 

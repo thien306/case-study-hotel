@@ -6,34 +6,41 @@ function getUserDetail() {
     return null;
 }
 
-let userPrinciple = getUserDetail();
+// let userPrinciple = getUserDetail();
 let token = null;
-if (userPrinciple) {
-    token = userPrinciple.token;
+let user = getUserDetail();
+if (user) {
+    token = user.token;
 }
-const user = userPrinciple;
-
-// function getCustomerInfo() {
-//     $.ajax({
-//         url: `http://localhost:8080/api/customers/${user.id}`,
-//         method: "GET",
-//         headers:{
-//             "Authorization": `Bearer ${token}`
-//         },
-//         success:function(data) {
-//             $("#name").val(data.name);
-//             $("#birthday").val(data.birthday);
-//             $("#email").val(data.email);
-//             $("#phoneNumber").val(data.phoneNumber);
-//             $("#avatar").val(data.avatar);
-//         },
-//         error: function(xhr, status, error) {
-//             console.error("Error fetching customer info:", error);
-//             alert("Failed to fetch customer information.");
-//         }
-//     })
+// const user = userPrinciple;
+// if (!user){
+//     window.location.href = "../../templates/login.html";
 // }
-// getCustomerInfo();
+
+function getCustomerInfo() {
+    if (user && user.username){
+        $.ajax({
+            url: `http://localhost:8080/api/customers/${user.id}`,
+            method: "GET",
+            headers:{
+                "Authorization": `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            success:function(data) {
+                $("#name").val(data.name);
+                $("#birthday").val(data.birthday);
+                $("#email").val(data.email);
+                $("#phoneNumber").val(data.phoneNumber);
+                $("#avatar").val(data.avatar);
+            },
+            error: function(xhr, status, error) {
+                console.error("Error fetching customer info:", error);
+                alert("Failed to fetch customer information.");
+            }
+        })
+    }
+}
+getCustomerInfo();
 
 function updateCustomer() {
     const newCustomerInfo = {
@@ -53,7 +60,7 @@ function updateCustomer() {
         data: JSON.stringify(newCustomerInfo),
         success:function(data) {
             alert("Successfully updated customer information.");
-            window.location.href = "../../templates/customer_update.html"
+            // window.location.href = "../../templates/list.html"
         },
         error: function (xhr, status, error) {
             console.error("Error updating customer information:", error);
@@ -61,5 +68,3 @@ function updateCustomer() {
         }
     })
 }
-
-
