@@ -1,6 +1,7 @@
 package com.codegym.controller;
 
 import com.codegym.model.Room;
+import com.codegym.model.Type;
 import com.codegym.model.dto.ResponsePage;
 import com.codegym.model.dto.RoomRequestDto;
 import com.codegym.service.Interface.IRoomService;
@@ -139,6 +140,20 @@ public class RoomController {
         return new ResponseEntity<>(sortedRooms, HttpStatus.OK);
 
     }
+
+//    @GetMapping("/type")
+//    public ResponseEntity<Page<Room>> sortType(@RequestParam(name = "value") String value, Pageable pageable) {
+//        Page<Room> typeRoom;
+//        Type type = new Type();
+//        type.setName(value);
+//
+//        if (value.equalsIgnoreCase("DON") || value.equalsIgnoreCase("DOI") || value.equalsIgnoreCase("VIP")) {
+//            typeRoom = roomService.findAllByType(pageable);
+//        } else {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+//        return new ResponseEntity<>(typeRoom, HttpStatus.OK);
+//    }
 
 
 }

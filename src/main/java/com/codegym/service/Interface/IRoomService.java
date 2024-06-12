@@ -1,15 +1,25 @@
 package com.codegym.service.Interface;
 
+import com.codegym.model.Booking;
 import com.codegym.model.Room;
 import com.codegym.model.dto.ResponsePage;
 import com.codegym.model.dto.RoomRequestDto;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import java.math.BigDecimal;
-import java.util.Optional;
-import com.codegym.model.Type;
-import java.util.Date;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.Optional;
+
+import com.codegym.model.Customer;
+import com.codegym.model.Room;
+import com.codegym.model.Type;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
+import java.math.BigDecimal;
+import java.util.Date;
+import java.util.Optional;
 
 
 public interface IRoomService {
@@ -20,11 +30,11 @@ public interface IRoomService {
 
     Page<Room> findAllByPriceBetween(BigDecimal minPrice, BigDecimal maxPrice, Pageable pageable);
 
+    Page<Room> findAllByTypeNameContaining(String typeName, Pageable pageable);
+
     Page<Room> findAllByOrderByPriceAsc(Pageable pageable);
 
     Page<Room> findAllByOrderByPriceDesc(Pageable pageable);
-
-    Page<Room> findAllByType(Pageable pageable);
 
     Page<Room> findAll(Pageable pageable);
 
@@ -39,7 +49,9 @@ public interface IRoomService {
     Iterable<Room> findByCodeContaining(String code);
 
     Iterable<Room> findByDate(Date checkin, Date checkout, String type);
-
     Iterable<Room> findByType(Type type);
+    List<Room> getAllRoomBooked(Booking booking);
+
+
 
 }
