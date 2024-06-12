@@ -32,7 +32,7 @@ public class CustomerController {
     }
 
     @GetMapping("/{id}")
-//    @PreAuthorize("permitAll()")
+    @PreAuthorize("permitAll()")
     public ResponseEntity<Customer> getCustomerById(@PathVariable("id") Long id) {
         return new ResponseEntity<>(customerService.getCustomerById(id), HttpStatus.OK);
     }
