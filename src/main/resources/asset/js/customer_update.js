@@ -23,7 +23,7 @@ function getCustomerInfo() {
             url: `http://localhost:8080/api/customers/${user.id}`,
             method: "GET",
             headers:{
-                "Authorization": `Bearer ${token}`,
+                "Authorization": `Bearer ` + token,
                 "Content-Type": "application/json",
             },
             success:function(data) {
@@ -46,25 +46,33 @@ function updateCustomer() {
     const newCustomerInfo = {
         name: $("#name").val(),
         birthday: $("#birthday").val(),
-        phoneNumber: $("#phoneNumber").val(),
-        avatar: $("#avatar").val(),
+        email: $("#email").val(),
+        phoneNumber: $("#phoneNumber").val()
+    };
+
+    const formData = new FormData();
+    formData.append("customer", new Blob([JSON.stringify(newCustomerInfo)], { type: "application/json" }));
+
+    const avatarFile = $("#avatar")[0].files[0];
+    if (avatarFile) {
+        formData.append("avatar", avatarFile);
     }
 
     $.ajax({
         url: `http://localhost:8080/api/customers/update-by-username`,
         method: "PUT",
         headers: {
-            "Authorization": `Bearer ${user.token}`,
-            "Content-Type": "application/json",
+            "Authorization": `Bearer ` + token,
         },
-        data: JSON.stringify(newCustomerInfo),
-        success:function(data) {
+        data: formData,
+        contentType: false,
+        processData: false,
+        success: function(data) {
             alert("Successfully updated customer information.");
-            // window.location.href = "../../templates/list.html"
         },
-        error: function (xhr, status, error) {
+        error: function(xhr, status, error) {
             console.error("Error updating customer information:", error);
             alert("Failed to update customer information.");
         }
-    })
+    });
 }

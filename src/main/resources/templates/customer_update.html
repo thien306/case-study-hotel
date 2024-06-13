@@ -30,7 +30,7 @@
         <div class="col-md-8">
             <div class="form-container">
                 <h1 class="text-center mb-4">Edit Customer Information</h1>
-                <form id="updateForm">
+                <form id="updateForm" enctype="multipart/form-data">
 
                     <div class="mb-3">
                         <label for="name" class="form-label">Name:</label>
@@ -44,7 +44,7 @@
 
                     <div class="mb-3">
                         <label for="email" class="form-label">Email:</label>
-                        <input type="email" id="email" class="form-control" readonly>
+                        <input type="email" id="email" class="form-control" required>
                     </div>
 
                     <div class="mb-3">
@@ -52,9 +52,14 @@
                         <input type="text" id="phoneNumber" class="form-control" required>
                     </div>
 
+<!--                    <div class="mb-3">-->
+<!--                        <label for="avatar" class="form-label">Avatar:</label>-->
+<!--                        <input type="text" id="avatar" class="form-control">-->
+<!--                    </div>-->
+
                     <div class="mb-3">
                         <label for="avatar" class="form-label">Avatar:</label>
-                        <input type="text" id="avatar" class="form-control">
+                        <input type="file" id="avatar" class="form-control" accept="image/*">
                     </div>
 
                     <button type="button" class="btn btn-primary w-100" id="updateButton" onclick="updateCustomer()">Update</button>
@@ -63,12 +68,12 @@
         </div>
     </div>
 </div>
-    <script>
-        let userPrinciple = JSON.parse(localStorage.getItem("user"));
-        if (!userPrinciple || !userPrinciple.token) {
-            window.location.href = "../templates/login.html";
-        }
-    </script>
+<script>
+    let userPrinciple = JSON.parse(localStorage.getItem("user"));
+    if (!userPrinciple || !userPrinciple.token) {
+        window.location.href = "../templates/login.html";
+    }
+</script>
 
 <script src="../asset/js/customer_update.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
