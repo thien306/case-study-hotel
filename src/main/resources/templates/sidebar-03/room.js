@@ -109,45 +109,91 @@ function showUpdateForm(id) {
 
 }
 
-function addNewRoom() {
-    let tempImage = localStorage.getItem("tempImage");
-    if (tempImage) {
-        const code = $('#create-code').val();
-        const description = $('#create-description').val();
-        const image = JSON.parse(tempImage);
-        const price = $('#create-price').val();
-        const status = $('#create-status').val();
-        const type = $('#create-types').val();
-        const formData = {
-            'code': code,
-            'description': description,
-            'image': image,
-            'price': price,
-            'status': status,
-            'type': type,
-        }
-        console.log(formData)
-        $.ajax({
-            headers: {
-                "Authorization": `Bearer ${token}`,
-                'Content-Type': 'application/json'
-            },
-            type: "POST",
-            url: "http://localhost:8080/api/rooms",
-            data: JSON.stringify(formData),
-            success: function (res) {
-                $("#exampleModal").click();
-                alert(res?.message);
-                displayRoomList();
-                displayFormCreate();
-                localStorage.removeItem("tempImage");
-            },
-            error: function (error) {
-                console.error('Error searching rooms:', error);
-            }
-        });
+function checkFormCreate() {
+    const code = document.getElementById("create-code");
+    const description = document.getElementById("create-description");
+    const image = document.getElementById("create-image");
+    const price = document.getElementById("create-price");
+    const status = document.getElementById("create-status");
+    const types = document.getElementById("create-types");
+
+    if (code.value === "") {
+        alert("Room code cannot be empty");
+        code.focus();
+        return false;
+    } else if (code.value.length !== 3 && code.value.length !== 4) {
+        alert("The room code only contains 3 or 4 digits");
+        code.focus();
+        return false;
     }
 
+    if (description.value === "") {
+        alert("Description cannot be empty");
+        description.focus();
+        return false;
+    } else if (description.value.length <= 8) {
+        alert("Description length must be greater than 8");
+        description.focus();
+        return false;
+    }
+
+    if (image.value === "") {
+        alert("Image cannot be empty");
+        image.focus();
+        return false;
+    }
+
+    if (price.value === "" || price.value <= 0) {
+        alert("Room rates cannot be empty and must be greater than 0");
+        price.focus();
+        return false;
+    }
+
+    return true;
+}
+
+function addNewRoom() {
+    if (checkFormCreate()) {
+        let tempImage = localStorage.getItem("tempImage");
+        if (tempImage) {
+            const code = $('#create-code').val();
+            const description = $('#create-description').val();
+            const image = JSON.parse(tempImage);
+            const price = $('#create-price').val();
+            const status = $('#create-status').val();
+            const type = $('#create-types').val();
+            const formData = {
+                'code': code,
+                'description': description,
+                'image': image,
+                'price': price,
+                'status': status,
+                'type': type,
+            };
+            console.log(formData);
+            $.ajax({
+                headers: {
+                    "Authorization": `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                type: "POST",
+                url: "http://localhost:8080/api/rooms",
+                data: JSON.stringify(formData),
+                success: function (res) {
+                    $("#exampleModal").click();
+                    alert(res?.message);
+                    displayRoomList();
+                    displayFormCreate();
+                    localStorage.removeItem("tempImage");
+                },
+                error: function (error) {
+                    console.error('Error searching rooms:', error);
+                }
+            });
+        } else {
+            alert("No image found in localStorage");
+        }
+    }
 }
 
 function displayFormCreate() {
@@ -167,53 +213,96 @@ function displayFormUpdate() {
     document.getElementById('title').style.display = "none";
 }
 
-let currentUpdateId = null;
+function checkFormUpdate() {
+    const code = document.getElementById("update-code");
+    const description = document.getElementById("update-description");
+    const image = document.getElementById("update-image");
+    const price = document.getElementById("update-price");
+    const status = document.getElementById("update-status");
+    const types = document.getElementById("update-types");
+
+    if (code.value === "") {
+        alert("Room code cannot be empty");
+        code.focus();
+        return false;
+    } else if (code.value.length !== 3 && code.value.length !== 4) {
+        alert("The room code only contains 3 or 4 digits");
+        code.focus();
+        return false;
+    }
+
+    if (description.value === "") {
+        alert("Description cannot be empty");
+        description.focus();
+        return false;
+    } else if (description.value.length <= 8) {
+        alert("Description length must be greater than 8");
+        description.focus();
+        return false;
+    }
+
+    if (image.value === "") {
+        alert("Image cannot be empty");
+        image.focus();
+        return false;
+    }
+
+    if (price.value === "" || price.value <= 0) {
+        alert("Room rates cannot be empty and must be greater than 0");
+        price.focus();
+        return false;
+    }
+
+    return true;
+}
 
 
 function updateRoom(id) {
-    let tempImage = localStorage.getItem("tempImage");
-    let formData = null;
-    if (tempImage) {
-        const id = $('#room-id').val();
-        const code = $('#update-code').val();
-        const description = $('#update-description').val();
-        const image = JSON.parse(tempImage);
-        const price = $('#update-price').val();
-        const status = $('#update-status').val();
-        const type = $('#update-types').val();
+    if (checkFormUpdate()) {
+        let tempImage = localStorage.getItem("tempImage");
+        let formData = null;
+        if (tempImage) {
+            const id = $('#room-id').val();
+            const code = $('#update-code').val();
+            const description = $('#update-description').val();
+            const image = JSON.parse(tempImage);
+            const price = $('#update-price').val();
+            const status = $('#update-status').val();
+            const type = $('#update-types').val();
 
-        formData = {
-            'id': id,
-            'code': code,
-            'description': description,
-            'image': image,
-            'price': price,
-            'status': status,
-            'type': type,
+            formData = {
+                'id': id,
+                'code': code,
+                'description': description,
+                'image': image,
+                'price': price,
+                'status': status,
+                'type': type,
+            }
         }
+        console.log(formData)
+        $.ajax({
+            headers: {
+                "Authorization": `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            },
+            type: "PUT",
+            url: `http://localhost:8080/api/rooms`,
+            data: JSON.stringify(formData),
+            processData: false,
+            contentType: false,
+            success: function (res) {
+                $("#exampleModalCenter").click();
+                alert(res?.message);
+                displayRoomList();
+                displayFormUpdate();
+                localStorage.removeItem("tempImage");
+            },
+            error: function (error) {
+                console.error('Error searching rooms:', error);
+            }
+        });
     }
-    console.log(formData)
-    $.ajax({
-        headers: {
-            "Authorization": `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        type: "PUT",
-        url: `http://localhost:8080/api/rooms`,
-        data: JSON.stringify(formData),
-        processData: false,
-        contentType: false,
-        success: function (res) {
-            $("#exampleModalCenter").click();
-            alert(res?.message);
-            displayRoomList();
-            displayFormUpdate();
-            localStorage.removeItem("tempImage");
-        },
-        error: function (error) {
-            console.error('Error searching rooms:', error);
-        }
-    });
 }
 
 function deleteRoom(id) {
@@ -323,7 +412,6 @@ function displayRooms(rooms) {
     $("#roomListType").html(content);
     hideForms();
 }
-
 
 
 

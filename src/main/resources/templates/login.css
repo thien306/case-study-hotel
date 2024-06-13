@@ -102,8 +102,8 @@ body {
 }
 
 #right {
-  background-image:
-          url("images/bg.jpg");
+  /*background-image: url("templates/sidebar-03/assets/img_1.png");*/
+  background-image: url("https://ibb.co/ctFqM43");
   background-size: cover;
   background-repeat: no-repeat;
   width: 65%;
