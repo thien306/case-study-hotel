@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Sidebar</title>
+    <title>Marriott Hotel admin</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
@@ -61,30 +61,15 @@
                             <span class="tooltip__content">Add Room</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="#watchlist" title="Watchlist" class="tooltip">
 
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 stroke-width="2"
-                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M12 17.75l-6.172 3.245l1.179 -6.873l-5 -4.867l6.9 -1l3.086 -6.253l3.086 6.253l6.9 1l-5 4.867l1.179 6.873z"></path>
-                            </svg>
-                            <span class="link hide">Watchlist</span>
-                            <span class="tooltip__content">Watchlist</span>
-                        </a>
-                    </li>
                     <li>
-                        <a href="#explore" title="Explore" class="tooltip">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                 stroke-width="2"
-                                 stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                                <path d="M8 16l2 -6l6 -2l-2 6l-6 2"></path>
-                                <path d="M12 12m-9 0a9 9 0 1 0 18 0a9 9 0 1 0 -18 0"></path>
+                        <a href="#explore" title="Explore" class="tooltip" data-toggle="modal" data-target="#Modal">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-house-add" viewBox="0 0 16 16">
+                                <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h4a.5.5 0 1 0 0-1h-4a.5.5 0 0 1-.5-.5V7.207l5-5 6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293z"/>
+                                <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0m-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 1 0 1 0v-1h1a.5.5 0 1 0 0-1h-1v-1a.5.5 0 0 0-.5-.5"/>
                             </svg>
-                            <span class="link hide">Explore</span>
-                            <span class="tooltip__content">Explore</span>
+                            <span class="link hide">Type room</span>
+                            <span class="tooltip__content">Type room</span>
                         </a>
                     </li>
                 </ul>
@@ -93,8 +78,8 @@
 
             <div class="sidebar-links">
                 <ul>
-                    <li>
-                        <a href="#home" title="Home" class="tooltip">
+                    <li id="login-link">
+                        <a href="../login.html" title="login" class="tooltip">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -102,13 +87,11 @@
                                 <path fill-rule="evenodd"
                                       d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708z"/>
                             </svg>
-                            <span class="link hide">log out</span>
-                            <span class="tooltip__content">Home</span>
                         </a>
                     </li>
 
-                    <li>
-                        <a href="#home" title="Home" class="tooltip">
+                    <li id="logout-link" style="display:none;">
+                        <a href="#" title="logout" class="tooltip" onclick="logout()">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                  class="bi bi-box-arrow-in-right" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -116,21 +99,18 @@
                                 <path fill-rule="evenodd"
                                       d="M11.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5H1.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                             </svg>
-                            <span class="link hide">log in</span>
-                            <span class="tooltip__content">Home</span>
+                            <span class="link hide" id="user-info"></span>
                         </a>
                     </li>
-
                 </ul>
             </div>
 
+
             <div class="sidebar-bottom hide">
-
                 <img src="/templates/sidebar-03/assets/img.png" alt="Diamond">
-                <p>
-                    Welcome to the hotel
+                <p id="hello-user">
+                    Welcome to the hotel +
                 </p>
-
             </div>
             <div class="expand-btn">
                 <img
@@ -166,8 +146,7 @@
                            aria-disabled="true">Previous</a>
                     </li>
                     <li class="page-item active" aria-current="page">
-                        <a class="page-link" onclick="pageRenderPitch()">1 <span
-                                class="visually-hidden">(current)</span></a>
+                        <a class="page-link" onclick="pageRenderPitch()">1 </a>
                     </li>
                     <!--            <li class="page-item"><a class="page-link" onclick="pageRenderPitch()">2</a></li>-->
                     <!--            <li class="page-item"><a class="page-link" href="#">3</a></li>-->
@@ -248,9 +227,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel">CREATE</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
+
             </div>
             <div class="modal-body">
                 <div class="row">
@@ -287,6 +264,33 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 <button type="button" class="btn btn-primary" onclick="addNewRoom()">ADD ROOM</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">TYPE ROOM</h5>
+
+            </div>
+            <div class="modal-body">
+                <input type="number" id="type-id" hidden>
+
+
+                <div class="col-xl-12">
+                    <input type="text" id="type-name" placeholder="code">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save type</button>
             </div>
         </div>
     </div>
@@ -403,7 +407,7 @@
         for (let i = 0; i < totalPages; i++) {
             if (i == pageNumber) {
                 temp += `<li class="page-item active" aria-current="page">
-                        <a class="page-link" onclick="pageRenderPitch(${i})">${i + 1} <span class="visually-hidden">(current)</span></a>
+                        <a class="page-link" onclick="pageRenderPitch(${i})">${i + 1} </a>
                     </li>`;
             } else {
                 temp += `<li class="page-item"><a class="page-link" onclick="pageRenderPitch(${i})">${i + 1}</a></li>`;
@@ -442,7 +446,53 @@
         })
     }
 
+    function handleClickAddFormType() {
+        $.ajax({
+            url: `http://localhost:8080/api/types`,
+            type: "GET",
+            crossDomain: true,
+            contentType: 'application/json',
+            dataType: "json",
+            success: (response) => {
+                console.log("response", response)
+                let select = $("#create-types");
+                select.empty();
+                response.forEach(type => {
+                    select.append(new Option(type.name, type.id));
+                });
+            },
+            error: (e) => {
+                console.log(e);
+            }
+        })
+    }
 
+    $(document).ready(function () {
+        updateNavLinks();
+    });
+
+    function logout() {
+        localStorage.removeItem('token');
+        localStorage.removeItem('username');
+        updateNavLinks();
+        window.location.href = "../templates/login.html";
+    }
+
+
+    function updateNavLinks() {
+        const username = localStorage.getItem("username");
+
+        if (username) {
+            $('#login-link').hide();
+            $('#logout-link').show();
+            $('#user-info').html(`<span>${username}</span> <button class="user-info" onclick="logout()">Logout</button>`);
+            $('#hello-user').text(`Welcome to the hotel  ${username}`);
+        } else {
+            $('#login-link').show();
+            $('#logout-link').hide();
+            $('#user-info').html('<a href="../login.html">Login</a>');
+        }
+    }
 
 
 
