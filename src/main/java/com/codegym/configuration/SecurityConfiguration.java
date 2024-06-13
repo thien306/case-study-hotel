@@ -87,6 +87,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/api/users/**").permitAll()
                         .requestMatchers("/api/users/update-password").permitAll()
                         .requestMatchers("/api/bookings/**").permitAll()
+                        .requestMatchers("/api/customers/update-by-username").permitAll()
                         .anyRequest().authenticated());
 
 ////        // Pages require login with role: ROLE_ADMIN.
